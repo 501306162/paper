@@ -1,30 +1,9 @@
 function [x, history] = admm(b, lambda, rho, alpha)
 % total_variation  Solve total variation minimization via ADMM
-%
-% [x, history] = total_variation(b, lambda, rho, alpha)
-% 
-% Solves the following problem via ADMM:
 % 
 %   minimize  (1/2)||x - b||_2^2 + lambda * sum_i |x_{i+1} - x_i|
 %
 % where b in R^n.
-%
-% The solution is returned in the vector x.
-%
-% history is a structure that contains the objective value, the primal and 
-% dual residual norms, and the tolerances for the primal and dual residual 
-% norms at each iteration.
-% 
-% rho is the augmented Lagrangian parameter. 
-%
-% alpha is the over-relaxation parameter (typical values for alpha are 
-% between 1.0 and 1.8).
-%
-%
-% More information can be found in the paper linked at:
-% http://www.stanford.edu/~boyd/papers/distr_opt_stat_learning_admm.html
-%
-
 t_start = tic;
 
 %% Global constants and defaults
