@@ -23,7 +23,7 @@ f_m=randi(10,10,10);
 f_f=randi(10,10,10);
 [m,n]=size(f_m);
 lamda=0.1;
-rol_0=5;
+rho_0=5;
 mu=10;
 tao=1.3;
 
@@ -47,8 +47,8 @@ kesai_tol= 1e-2;
 for j=1:M_pyr+M_ref  
     if j<M_pyr
         %%
-        f_mj=f_m(M_pyr-j)  %(Mpyr ? j )-th Gaussian pyramid level of fm
-        f_fj=f_f(M_pyr-j)  %(Mpyr ? j )-th Gaussian pyramid level of ff
+        f_mj=f_m(M_pyr-j)  %(Mpyr - j )-th Gaussian pyramid level of fm
+        f_fj=f_f(M_pyr-j)  %(Mpyr - j )-th Gaussian pyramid level of ff
     else
         f_mj=f_mj_old;
         f_fj=f_fj_old;
@@ -56,25 +56,16 @@ for j=1:M_pyr+M_ref
     
     num_control=numel(f_mj);
     % ADMM solver in j-th level 
-
     k = zeros(num_control+1,1);
-    %% z <- Dk(j,0)
     z = Dk(k); 
-    %%
     u = zeros(num_control+1,1);
-    rho=rol_0;
-    
-    % title
-    if ~QUIET
-        fprintf('%11s\t%3s\t%10s\t%10s\t%10s\t%10s\t%10s\n','M_pyr+M_ref', 'iter', ...
-          'r norm', 'eps pri', 's norm', 'eps dual', 'objective');
-    end
+    rho=rho_0;
 
     for m_iter = 1:M_iter
         k_old=k;
         
-        %% x-update
-        k = update_x(A, b, u, z, rho);
+        %% x-update use lbfgs
+        k = update_x(A, b, u, z, rho);  ' undone!'
                 
         kk=sum(k-k_old);% max {row(j)_sum}
         if kk<kesai_tol
@@ -82,41 +73,35 @@ for j=1:M_pyr+M_ref
         end
         %%
 
-        % z-update with relaxation && z is a ||z||_2
+        %% z-update with relaxation && use group lasso
         z_old = z;
         x_hat = alpha*k + (1-alpha)*z_old;
-        z=update_z(A, b, x_hat, u, rho);
+       
+        z=update_z(A, b, x_hat, u, rho);         ' undone!'
+        %%
         % u-update
         u = u + (x_hat - z);
-
         % diagnostics, reporting, termination checks
         history.objval(m_iter)  = objective(A, b, mu, k, z);
-
-        history.r_norm(m_iter)  = norm(k - z);
-        history.s_norm(m_iter)  = norm(rho*(z - z_old));
-
-
         history.eps_pri(m_iter) = sqrt(n)*ABSTOL + RELTOL*max(norm(k), norm(z));
         history.eps_dual(m_iter)= sqrt(n)*ABSTOL + RELTOL*norm(rho*u);
-
-        if ~QUIET
-            fprintf('%3d\t%3d\t%10.4f\t%10.4f\t%10.4f\t%10.4f\t%10.2f\n', j,m_iter, ...
-                history.r_norm(m_iter), history.eps_pri(m_iter), ...
-                history.s_norm(m_iter), history.eps_dual(m_iter), history.objval(m_iter));
+        history.r_norm(m_iter)=norm(Dk(k)-z);
+        history.s_norm(m_iter)=norm(rho*D_conjugate(z , z_old));
+        % varying penalty 
+        if history.r_norm(m_iter)>=mu*history.s_norm(m_iter)
+            rho=rho*tao;
+            u=u/tao;
         end
-
-
-        if history.r_norm(m_iter) < history.eps_pri(m_iter) && ...
-           history.s_norm(m_iter) < history.eps_dual(m_iter)
-            break;
+        if history.s_norm(m_iter)>=mu*history.r_norm(m_iter)
+            rho=rho/tao;
+            u=u*tao;
         end
-        
     end % end of M_iter
 
     if ~QUIET
         toc(t_start);
     end
-
+      
 end % end of M_pyr
 
 end % end of function
@@ -172,5 +157,27 @@ end
 
 function z = Dk(k)
 
+end
+function s=D_conjugate(z , z_old)
+
+end
+
+function z = D(d,N)
+     con_distance=1; % 控制点间距
+     % forward difference :delta_i(dj[l])
+     for j=1:N
+         for i=1:N
+             % displacement in j-th dimension :d(:,j);
+                dis(r,c)=d(:,j);
+             % difference of j-th dispalcement,in i-th direction   
+     ' undone!'   维度不一致
+                d_r=(dis(r+1,c)-dis(r,c))/con_distance;
+                delta(1:length(d_r),j)=d_r(:);
+                
+                d_c=(dis(r,c+1)-dis(r,c))/con_distance;
+                delta((length(d_r)+1):(length(d_r)+length(d_c)),j)=d_c(:);
+                
+         end
+     end
 end
 %%
