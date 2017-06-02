@@ -1,73 +1,73 @@
-function [x, history] = admm(b, lambda, rho, alpha)
-% total_variation  Solve total variation minimization via ADMM
-% 
-%   minimize  (1/2)||x - b||_2^2 + lambda * sum_i |x_{i+1} - x_i|
+function [z, history] = admm(A, b, mu, rho, alpha)
+% logreg   Solve L1 regularized logistic regression via ADMM
 %
-% where b in R^n.
+% solves the following problem via ADMM:%
+%   minimize   E_D(d(k);f_f,f_m)+lamada*eta*||Z||_2,1
+%   s.t.       D(k)=Z;
+% where A is a feature matrix and b is a response vector. The scalar m is
+% the number of examples in the matrix A.
+
+
 t_start = tic;
 
 %% Global constants and defaults
 
 QUIET    = 0;
-MAX_ITER = 1000;
+M_iter = 1000;
+M_lbfgs=
 ABSTOL   = 1e-4;
 RELTOL   = 1e-2;
 
+
 %% Data preprocessing
 
-n = length(b);
-
-% difference matrix
-e = ones(n,1);
-% A = spdiags（B，D ,m, n），产生一个m×n稀疏矩阵A，其元素是B中的列元素放在由D指定的对角线位置上。
-D = spdiags([e -e], 0:1, n,n);
+[m, n] = size(A);
 
 %% ADMM solver
 
-x = zeros(n,1);
-z = zeros(n,1);
-u = zeros(n,1);
+x = zeros(n+1,1);
+z = zeros(n+1,1);
+u = zeros(n+1,1);
+
 
 if ~QUIET
     fprintf('%3s\t%10s\t%10s\t%10s\t%10s\t%10s\n', 'iter', ...
       'r norm', 'eps pri', 's norm', 'eps dual', 'objective');
 end
 
-I = speye(n);
-DtD = D'*D;
-
-for k = 1:MAX_ITER
+for k = 1:M_iter
 
     % x-update
-    x = (I + rho*DtD) \ (b + rho*D'*(z-u));
+    x = update_x(A, b, u, z, rho);
 
     % z-update with relaxation
     zold = z;
-    Ax_hat = alpha*D*x +(1-alpha)*zold;
-    z = shrinkage(Ax_hat + u, lambda/rho);
+    x_hat = alpha*x + (1-alpha)*zold;
+    z = x_hat + u;
+    z(2:end) = shrinkage(z(2:end), (m*mu)/rho);
 
-    % y-update
-    u = u + Ax_hat - z;
-
+    u = u + (x_hat - z);
 
     % diagnostics, reporting, termination checks
-    history.objval(k)  = objective(b, lambda, D, x, z);
+    history.objval(k)  = objective(A, b, mu, x, z);
+    
+    history.r_norm(k)  = norm(x - z);
+    history.s_norm(k)  = norm(rho*(z - zold));
 
-    history.r_norm(k)  = norm(D*x - z);
-    history.s_norm(k)  = norm(-rho*D'*(z - zold));
-    
-    history.eps_pri(k) = sqrt(n)*ABSTOL + RELTOL*max(norm(D*x), norm(-z));
-    history.eps_dual(k)= sqrt(n)*ABSTOL + RELTOL*norm(rho*D'*u);
-    
+        
+    history.eps_pri(k) = sqrt(n)*ABSTOL + RELTOL*max(norm(x), norm(z));
+    history.eps_dual(k)= sqrt(n)*ABSTOL + RELTOL*norm(rho*u);
+ 
     if ~QUIET
         fprintf('%3d\t%10.4f\t%10.4f\t%10.4f\t%10.4f\t%10.2f\n', k, ...
             history.r_norm(k), history.eps_pri(k), ...
             history.s_norm(k), history.eps_dual(k), history.objval(k));
     end
     
-    if (history.r_norm(k) < history.eps_pri(k) && ...
-       history.s_norm(k) < history.eps_dual(k))
-         break;
+
+    if history.r_norm(k) < history.eps_pri(k) && ...
+       history.s_norm(k) < history.eps_dual(k)
+        break;
     end
 end
 
@@ -77,10 +77,45 @@ end
 
 end
 
-function obj = objective(b, lambda, D, x, z)
-    obj = .5*norm(x - b)^2 + lambda*norm(z,1);
+function obj = objective(A, b, mu, x, z)
+    m = size(A,1);
+    obj = sum(log(1 + exp(-A*x(2:end) - b*x(1)))) + m*mu*norm(z,1);
 end
 
-function y = shrinkage(a, kappa)
-    y = max(0, a-kappa) - max(0, -a-kappa);
+function x = update_x(A, b, u, z, rho, x0)
+    % solve the x update
+    %   minimize [ -logistic(x_i) + (rho/2)||x_i - z^k + u^k||^2 ]
+    % via Newton's method; for a single subsystem only.
+    alpha = 0.1;
+    BETA  = 0.5;
+    TOLERANCE = 1e-5;
+    MAX_ITER = 50;
+    [m n] = size(A);
+    I = eye(n+1);
+    if exist('x0', 'var')
+        x = x0;
+    else
+        x = zeros(n+1,1);
+    end
+    C = [-b -A];
+    f = @(w) (sum(log(1 + exp(C*w))) + (rho/2)*norm(w - z + u).^2);
+    for iter = 1:MAX_ITER
+        fx = f(x);
+        g = C'*(exp(C*x)./(1 + exp(C*x))) + rho*(x - z + u);
+        H = C' * diag(exp(C*x)./(1 + exp(C*x)).^2) * C + rho*I;
+        dx = -H\g;   % Newton step
+        dfx = g'*dx; % Newton decrement
+        if abs(dfx) < TOLERANCE
+            break;
+        end
+        % backtracking
+        t = 1;
+        while f(x + t*dx) > fx + alpha*t*dfx
+            t = BETA*t;
+        end
+        x = x + t*dx;
+    end
+end
+function z = shrinkage(a, kappa)
+    z = max(0, a-kappa) - max(0, -a-kappa);
 end
