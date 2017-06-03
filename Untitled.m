@@ -162,22 +162,30 @@ function s=D_conjugate(z , z_old)
 
 end
 
-function z = D(d,N)
+function Dd = D(d,N,f_m)
      con_distance=1; % 控制点间距
-     % forward difference :delta_i(dj[l])
+     % 按矩阵方式存储。。。只有其相邻点不为0,即+1/delta or -1/delta;
+     % 所以delta 会是L*L维
+     % forward difference :delta_i(dj[l]) in 2-D
+     Dd=zeros(()
      for j=1:N
-         for i=1:N
-             % displacement in j-th dimension :d(:,j);
-                dis(r,c)=d(:,j);
-             % difference of j-th dispalcement,in i-th direction   
-     ' undone!'   维度不一致
-                d_r=(dis(r+1,c)-dis(r,c))/con_distance;
-                delta(1:length(d_r),j)=d_r(:);
-                
-                d_c=(dis(r,c+1)-dis(r,c))/con_distance;
-                delta((length(d_r)+1):(length(d_r)+length(d_c)),j)=d_c(:);
-                
-         end
+        delta=zeros(numel(f_m)*2,N);
+     % displacement in j-th dimension :d(:,j);
+        dis=reshape(d(:,j),size(f_m));
+        [md,nd]=size(dis);
+     % forward difference of j-th dispalcement,in i-th direction   
+' undone!'   维度不一致 是梯度还是差分要考虑下
+     % no.1 direction
+        r_1=dis(2:md,:);
+        r_0=dis(1:md-1,:);
+        d_r=(r_1-r_0)/con_distance(1);
+        delta(1:numel(d_r),j)=d_r(:);
+     % no.2 direction   
+        c_1=dis(:,2:nd);
+        c_0=dis(:,1:nd-1);
+        d_c=(c_1-c_0)/con_distance(2);
+        delta((numel(d_r)+1):(numel(d_r)+numel(d_c)),j)=d_c(:);
+
      end
 end
 %%
