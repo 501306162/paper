@@ -1,4 +1,4 @@
-function [d, history] = Untitled(A, b, mu, rho0, alpha)
+function [d, history] = Untitled(A, b, p,mu, rho0, alpha)
 % solves the following problem via ADMM:%
 %   minimize   E_D(d(k);f_f,f_m)+lamda*eta*||Z||_2,1
 %   s.t.       D(k)=Z;
@@ -22,6 +22,7 @@ t_start = tic;
 f_m=randi(10,10,10);
 f_f=randi(10,10,10);
 [m,n]=size(f_m);
+N=numel(size(f_m));
 lamda=0.1;
 rho_0=5;
 mu=10;
@@ -43,6 +44,9 @@ kesai_tol= 1e-2;
 
 [m, n] = size(A);
 
+
+
+
 % M_pyr sovler
 for j=1:M_pyr+M_ref  
     if j<M_pyr
@@ -53,6 +57,7 @@ for j=1:M_pyr+M_ref
         f_mj=f_mj_old;
         f_fj=f_fj_old;
     end
+
     
     num_control=numel(f_mj);
     % ADMM solver in j-th level 
@@ -66,28 +71,31 @@ for j=1:M_pyr+M_ref
         
         %% x-update use lbfgs
         k = update_x(A, b, u, z, rho);  ' undone!'
-                
-        kk=sum(k-k_old);% max {row(j)_sum}
-        if kk<kesai_tol
+        %%
+        % 'break' condition
+        kk=norm((k-k_old),'inf');% max {row(j)_abs_sum}
+        if kk>=kesai_tol
+        else
             break;
         end
-        %%
-
-        %% z-update with relaxation && use group lasso
+        % z-update with relaxation && use group lasso
+        % update with k->D(k)
         z_old = z;
-        x_hat = alpha*k + (1-alpha)*z_old;
-       
-        z=update_z(A, b, x_hat, u, rho);         ' undone!'
-        %%
+        Dk=D(k,N,f_m);
+        x_hat = alpha*Dk + (1-alpha)*z_old;
+        z=update_z(lamda,eat, x_hat, u, rho,p,z_old);         'to check!'
+        
         % u-update
         u = u + (x_hat - z);
         % diagnostics, reporting, termination checks
         history.objval(m_iter)  = objective(A, b, mu, k, z);
         history.eps_pri(m_iter) = sqrt(n)*ABSTOL + RELTOL*max(norm(k), norm(z));
         history.eps_dual(m_iter)= sqrt(n)*ABSTOL + RELTOL*norm(rho*u);
-        history.r_norm(m_iter)=norm(Dk(k)-z);
-        history.s_norm(m_iter)=norm(rho*D_conjugate(z , z_old));
+        
         % varying penalty 
+        history.r_norm(m_iter)=norm(Dk-z);
+        history.s_norm(m_iter)=norm(rho*D_conjugate(z , z_old));
+        
         if history.r_norm(m_iter)>=mu*history.s_norm(m_iter)
             rho=rho*tao;
             u=u/tao;
@@ -146,46 +154,53 @@ function x = update_x(A, b, u, z, rho, x0)
 end
 
 %% z-updata
-function z = shrinkage(a, kappa)
-    z = max(0, a-kappa) - max(0, -a-kappa);
-end
-function z = update_z(A, b, x_hat, u, rho)    
-
-        z = x_hat + u;
-        z = shrinkage(z, (lamda*eta)/rho);
-end
-
-function z = Dk(k)
-
-end
 function s=D_conjugate(z , z_old)
 
 end
-
-function Dd = D(d,N,f_m)
-     con_distance=1; % 控制点间距
+%%
+% z-update
+function z_out = update_z(lamda,eta, x_hat, u, rho,p,z_old) 
+    % cumulative partition
+    cum_part = cumsum(p);
+    start_ind = 1;
+    for i = 1:length(p),
+        sel = start_ind:cum_part(i);
+        z_old(sel) = shrinkage(x_hat(sel) + u(sel), lamda*eta/rho);
+        start_ind = cum_part(i) + 1;
+    end
+    z_out=z_old;
+end
+% function z = shrinkage(a, kappa)
+%     z = max(0, a-kappa) - max(0, -a-kappa);
+% end
+function z = shrinkage(a, kappa)
+    z = pos(1 - kappa/norm(a))*a;
+end
+% the function D(d) used in TV-Regularization
+function Dd = D(d,N,f_m)  %2-D
+     con_distance(1:N)=1; % 控制点间距
      % 按矩阵方式存储。。。只有其相邻点不为0,即+1/delta or -1/delta;
      % 所以delta 会是L*L维
      % forward difference :delta_i(dj[l]) in 2-D
-     Dd=zeros(()
+     Dd=zeros(N*N,numel(f_m));
+     k=1;
      for j=1:N
-        delta=zeros(numel(f_m)*2,N);
      % displacement in j-th dimension :d(:,j);
         dis=reshape(d(:,j),size(f_m));
         [md,nd]=size(dis);
      % forward difference of j-th dispalcement,in i-th direction   
-' undone!'   维度不一致 是梯度还是差分要考虑下
      % no.1 direction
         r_1=dis(2:md,:);
         r_0=dis(1:md-1,:);
         d_r=(r_1-r_0)/con_distance(1);
-        delta(1:numel(d_r),j)=d_r(:);
+        d_r(md,:)=0;
      % no.2 direction   
         c_1=dis(:,2:nd);
         c_0=dis(:,1:nd-1);
         d_c=(c_1-c_0)/con_distance(2);
-        delta((numel(d_r)+1):(numel(d_r)+numel(d_c)),j)=d_c(:);
-
+        d_c(:,nd)=0;
+        Dd(k:k+1,:)=[d_r(:)';d_c(:)'];
+        k=k+2;
      end
+%      Dd=Dd(:);
 end
-%%
