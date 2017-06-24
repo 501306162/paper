@@ -7,7 +7,11 @@ function Iout=movepixels_3d(Iin,Tx,Ty,Tz,mode)
 % Inputs;
 %   Tx, Ty, Tz: The transformation images, describing the
 %             (backwards) translation of every pixel in x ,y ,z direction.
-%   mode:   linear interpolation and outside pixels set to nearest pixel
+%   mode: If 0: linear interpolation and outside pixels set to nearest pixel
+%            1: linear interpolation and outside pixels set to zero
+%            (cubic interpolation only supported by compiled mex file)
+%            2: cubic interpolation and outsite pixels set to nearest pixel
+%            3: cubic interpolation and outside pixels set to zero
 %
 % Outputs,
 %   Iout : The transformed image
@@ -61,21 +65,26 @@ Iout=zeros(size(Iin));
   
 Iin_one=Iin(:,:);
 % Get the intensities
-intensity_xyz0=Iin_one(1+xBas0+yBas0*size(Iin,1)+zBas0*size(Iin,1)*size(Iin,2));
-intensity_xyz1=Iin_one(1+xBas0+yBas1*size(Iin,1)+zBas0*size(Iin,1)*size(Iin,2)); 
+intensity_xyz0=Iin_one(1+xBas0+yBas0*size(Iin,1));
+intensity_xyz1=Iin_one(1+xBas0+yBas1*size(Iin,1)); 
 
-intensity_xyz2=Iin_one(1+xBas1+yBas0*size(Iin,1)+zBas0*size(Iin,1)*size(Iin,2));
-intensity_xyz3=Iin_one(1+xBas0+yBas0*size(Iin,1)+zBas1*size(Iin,1)*size(Iin,2));
+intensity_xyz2=Iin_one(1+xBas1+yBas0*size(Iin,1));
+intensity_xyz3=Iin_one(1+xBas1+yBas1*size(Iin,1));
 
-intensity_xyz4=Iin_one(1+xBas1+yBas1*size(Iin,1)+zBas0*size(Iin,1)*size(Iin,2));
-intensity_xyz5=Iin_one(1+xBas0+yBas1*size(Iin,1)+zBas1*size(Iin,1)*size(Iin,2)); 
+intensity_xyz4=Iin_one(1+xBas0+yBas0*size(Iin,1));
+intensity_xyz5=Iin_one(1+xBas0+yBas1*size(Iin,1)); 
 
-intensity_xyz6=Iin_one(1+xBas1+yBas0*size(Iin,1)+zBas1*size(Iin,1)*size(Iin,2));
-intensity_xyz7=Iin_one(1+xBas1+yBas1*size(Iin,1)+zBas1*size(Iin,1)*size(Iin,2));
-
-Iout_one=intensity_xyz0.*perc0+intensity_xyz1.*perc1+intensity_xyz2.*perc2+intensity_xyz3.*perc3+...
-         intensity_xyz4.*perc4+intensity_xyz5.*perc5+intensity_xyz6.*perc6+intensity_xyz7.*perc7;
-Iout(:,:)=reshape(Iout_one, [size(Iin,1) size(Iin,2) size(Iin,3)]);
+intensity_xyz6=Iin_one(1+xBas1+yBas0*size(Iin,1));
+intensity_xyz7=Iin_one(1+xBas1+yBas1*size(Iin,1));
+% % Make pixels before outside Ibuffer mode
+% if(mode==1||mode==3)
+%     intensity_xyz0(check_xBas0|check_yBas0)=0;
+%     intensity_xyz1(check_xBas0|check_yBas1)=0;
+%     intensity_xyz2(check_xBas1|check_yBas0)=0;
+%     intensity_xyz3(check_xBas1|check_yBas1)=0;
+% end
+Iout_one=intensity_xyz0.*perc0+intensity_xyz1.*perc1+intensity_xyz2.*perc2+intensity_xyz3.*perc3;
+Iout(:,:)=reshape(Iout_one, [size(Iin,1) size(Iin,2)]);
 
     
     
