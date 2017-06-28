@@ -1,4 +1,4 @@
-function I3=movepixels(I1,Tx,Ty,Tz,mode)
+function I3=movepixels(I1,Tx,Ty,Tz)
 % This function movepixels, will (backwards) translate the pixels 
 % of an 2D/3D image according to x, y (and z) translation images 
 % (bilinear interpolated).
@@ -23,16 +23,12 @@ function I3=movepixels(I1,Tx,Ty,Tz,mode)
 %
 % Function is written by D.Kroon University of Twente (March 2009)
 
-if(~exist('mode','var')), mode=0; end
 
-if(size(I1,3)<4)
-    I3=movepixels_2d_double(double(I1),double(Tx),double(Ty),double(mode));
+
+if(numel(size(I1))==2)
+    I3=movepixels_2d_double(double(I1),double(Tx),double(Ty));
 else
-    if(isa(I1,'double')) %ÅÐ¶ÏÀàÐÍ
-        I3=movepixels_3d_double(double(I1),double(Tx),double(Ty),double(Tz),double(mode));
-    else
-        I3=movepixels_3d_single(single(I1),single(Tx),single(Ty),single(Tz),single(mode));
-    end
+    I3=movepixels_3d_double(double(I1),double(Tx),double(Ty),double(Tz));
 end
 if(~isa(I1,'double')&&~isa(I1,'single'))
     if(isa(I1,'uint8')), I3=uint8(I3); end

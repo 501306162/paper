@@ -1,4 +1,4 @@
-function Iout=movepixels_2d(Iin,Tx,Ty)
+function Iout=movepixels_2d(Iin_o,Tx,Ty)
 % This function movepixels, will translate the pixels of an image
 %  according to x and y translation images (bilinear interpolated). 
 % 
@@ -13,7 +13,8 @@ function Iout=movepixels_2d(Iin,Tx,Ty)
 %   Iout : The transformed image
 %
 % Function is written by D.Kroon University of Twente (February 2009)
-if(~exist('mode','var')), mode=0; end  
+Iin=double(Iin_o(:,:));
+Tx=double(Tx);Ty=double(Ty);
 % Make all x,y indices
 [x,y]=ndgrid(0:size(Iin,1)-1,0:size(Iin,2)-1);    % 0--->
                                                   % |
@@ -59,6 +60,15 @@ intensity_xyz3=Iin_one(1+xBas1+yBas1*size(Iin,1));
 Iout_one=intensity_xyz0.*perc0+intensity_xyz1.*perc1+intensity_xyz2.*perc2+intensity_xyz3.*perc3;
 Iout(:,:)=reshape(Iout_one, [size(Iin,1) size(Iin,2)]);
 
+if(~isa(Iin_o,'double')&&~isa(Iin_o,'single'))
+    if(isa(Iin_o,'uint8')), Iout=uint8(Iout); end
+    if(isa(Iin_o,'uint16')), Iout=uint16(Iout); end
+    if(isa(Iin_o,'uint32')), Iout=uint32(Iout); end
+    if(isa(Iin_o,'int8')),   Iout=int8(Iout); end
+    if(isa(Iin_o,'int16')), Iout=int16(Iout); end
+    if(isa(Iin_o,'int32')), Iout=int32(Iout); end
+end
+end
     
     
 

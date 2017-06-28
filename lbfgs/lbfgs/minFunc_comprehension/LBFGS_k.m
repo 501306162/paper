@@ -18,6 +18,9 @@ options = [];% 元素为空
 options.display = 'none';  
 options.maxFunEvals = maxFunEvals;
 options.Method = 'lbfgs';
+邻域   
+
+        neig_zero=neighborhood_trans(ind,ffo_zero,spacing); % K1,K2,K3大小邻域...中的点对应在原图中标号 
 
 x0=
 x = minFunc(@Ed_derivation,x0',options);

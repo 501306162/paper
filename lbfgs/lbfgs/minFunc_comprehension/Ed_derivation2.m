@@ -27,9 +27,9 @@ function [ki_up, dki_up] =Ed_derivation2(ffo,fmo,k,rho,Dissimilarity)
 
 移动以后图像 ...可以根据demons算法里的程序进行修改
     if(numel(k)>(2*numel(ffo)+1)) % 2d
-        f_m=movepixels_2d(double(fmo(:,:)),double(kx),double(ky));
+        f_m=movepixels_2d(fmo,kx,ky);
     else    
-        f_m=movepixels_3d(fmo(:,:),kx,ky); % 3d
+        f_m=movepixels_3d(fmo,kx,ky,kz); % 3d
     end   
 
 第一项操作  移动以后的  网格图像...

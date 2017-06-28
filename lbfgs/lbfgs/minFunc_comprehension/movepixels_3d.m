@@ -1,4 +1,4 @@
-function Iout=movepixels_3d(Iin,Tx,Ty,Tz,mode)
+function Iout=movepixels_3d(Iin_o,Tx,Ty,Tz)
 % This function movepixels, will translate the pixels of an image
 %  according to x & y & z translation images (bilinear interpolated). 
 % 
@@ -13,7 +13,8 @@ function Iout=movepixels_3d(Iin,Tx,Ty,Tz,mode)
 %   Iout : The transformed image
 %
 % Function is written by D.Kroon University of Twente (February 2009)
-if(~exist('mode','var')), mode=0; end  
+Iin=double(Iin_o(:,:,:));
+Tx=double(Tx);Ty=double(Ty);Tz=double(Tz(:));
 % Make all x,y,z indices
 [x,y,z]=ndgrid(0:size(Iin,1)-1,0:size(Iin,2)-1,0:size(Iin,3)-1);
 
@@ -75,7 +76,17 @@ intensity_xyz7=Iin_one(1+xBas1+yBas1*size(Iin,1)+zBas1*size(Iin,1)*size(Iin,2));
 
 Iout_one=intensity_xyz0.*perc0+intensity_xyz1.*perc1+intensity_xyz2.*perc2+intensity_xyz3.*perc3+...
          intensity_xyz4.*perc4+intensity_xyz5.*perc5+intensity_xyz6.*perc6+intensity_xyz7.*perc7;
-Iout(:,:)=reshape(Iout_one, [size(Iin,1) size(Iin,2) size(Iin,3)]);
+Iout(:,:,:)=reshape(Iout_one, [size(Iin,1) size(Iin,2) size(Iin,3)]);
+
+if(~isa(Iin_o,'double')&&~isa(Iin_o,'single'))
+    if(isa(Iin_o,'uint8')), Iout=uint8(Iout); end
+    if(isa(Iin_o,'uint16')), Iout=uint16(Iout); end
+    if(isa(Iin_o,'uint32')), Iout=uint32(Iout); end
+    if(isa(Iin_o,'int8')),   Iout=int8(Iout); end
+    if(isa(Iin_o,'int16')), Iout=int16(Iout); end
+    if(isa(Iin_o,'int32')), Iout=int32(Iout); end
+end
+end
 
     
     

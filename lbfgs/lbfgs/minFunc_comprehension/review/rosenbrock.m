@@ -8,7 +8,7 @@ function [f, df, ddf] = rosenbrock(x);
 % where D is the dimension of x. The true minimum is 0 at x = (1 1 ... 1).
 %
 % Carl Edward Rasmussen, 2001-07-21.
-
+% 输入一列向量..输出一列向量
 D = length(x);
 f = sum(100*(x(2:D)-x(1:D-1).^2).^2 + (1-x(1:D-1)).^2);
 
