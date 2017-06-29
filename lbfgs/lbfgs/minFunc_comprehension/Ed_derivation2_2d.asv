@@ -3,16 +3,13 @@ function [ki_up, dki_up] =Ed_derivation2_2d(ffo,fmo,k,rho,Dissimilarity,spacing,
 % 对一个向量进行位移场更新...返回找到最小值的点...即最小 f 对应的 k..
 %  
 %     输入最好是一维列向量...输出也是一维列向量
-%   k    是 1行  L列
-%   u、z 是 n2行 L列
 
-    num_control=numel(fmo); 
-    [m,n]=size(fmo);
+
     % spacing : pixel (voxel)'s physical dimensions δn ,n=1,2...N
     v=prod(spacing);
-    kr=reshape(k(1:num_control),m,n);
-    kc=reshape(k(num_control+1:end),m,n);
-
+    kr=reshape(k(1:numel(fmo)),size(fmo));
+    kc=reshape(k(numel(fmo)+1:end),size(fmo));
+    [m,n]=size(ffo);
 
     % 移动以后图像 ...根据demons算法里的程序进行修改
     f_m=movepixels_2d(fmo,kr,kc);
@@ -51,7 +48,6 @@ function [ki_up, dki_up] =Ed_derivation2_2d(ffo,fmo,k,rho,Dissimilarity,spacing,
     temp=D_new(kr,kc)-ZU_diff;  
     k_up_2=rho.*D_conju_new(kr,kc)*temp; 
     
-    % 应该输出维度为 (1,L) 
     dki_up=
     
 end

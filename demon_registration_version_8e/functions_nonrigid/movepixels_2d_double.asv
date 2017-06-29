@@ -19,7 +19,7 @@ function Iout=movepixels_2d_double(Iin,Tx,Ty,mode)
 % Function is written by D.Kroon University of Twente (February 2009)
   
 % Make all x,y indices
-% x,y对应同列上的点...为某一列坐标...(0,1)...(1,1)...(2,1)...
+% 产生
 [x,y]=ndgrid(0:size(Iin,1)-1,0:size(Iin,2)-1);   
 
 % Calculate the Transformed coordinates

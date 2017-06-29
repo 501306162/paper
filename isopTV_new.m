@@ -62,17 +62,18 @@ for j=1:M_pyr+M_ref
     num_control=numel(f_mj);
     % ADMM solver in j-th level 
     k = zeros(num_control+1,1);
-    z = Dk(k); 
+    z = D(k(1:num_control),k(num_control+1:end)); 
     u = zeros(num_control+1,1);
     rho=rho_0;
-k   是 (1,L) 维
-z\u 是(N^2,L)维
+    
+    % k   是 (1,L) 维
+    % z\u 是(N^2,L)维
     for m_iter = 1:M_iter
         k_old=k;
+未完成
+        % x-update use lbfgs
+        k = update_x(A, b, u, z, rho); 
         
-        %% x-update use lbfgs
-        k = update_x(A, b, u, z, rho);  ' undone!'
-        %%
         % 'break' condition
         kk=norm((k-k_old),'inf');% max {row(j)_abs_sum}
         if kk>=kesai_tol
@@ -82,7 +83,7 @@ z\u 是(N^2,L)维
         % z-update with relaxation && use group lasso
         % update with k->D(k)
         z_old = z;
-        Dk=D(k,N,f_m);
+        Dk=D(k(1:num_control),k(num_control+1:end));
         x_hat = alpha*Dk + (1-alpha)*z_old;
         z=update_z(lamda,eat, x_hat, u, rho,p,z_old);         'to check!'
         
@@ -155,9 +156,7 @@ function x = update_x(A, b, u, z, rho, x0)
 end
 
 %% z-updata
-function s=D_conjugate(z , z_old)
 
-end
 %%
 % z-update
 function z_out = update_z(lamda,eta, x_hat, u, rho,p,z_old) 
@@ -178,30 +177,9 @@ function z = shrinkage(a, kappa)
     z = pos(1 - kappa/norm(a))*a;
 end
 % the function D(d) used in TV-Regularization
-function Dd = D(d,N,f_m)  %2-D
-     con_distance(1:N)=1; % 控制点间距
-     % 按矩阵方式存储。。。只有其相邻点不为0,即+1/delta or -1/delta;
-     % 所以delta 会是L*L维
-     % forward difference :delta_i(dj[l]) in 2-D
-     Dd=zeros(N*N,numel(f_m));
-     k=1;
-     for j=1:N
-     % displacement in j-th dimension :d(:,j);
-        dis=reshape(d(:,j),size(f_m));
-        [md,nd]=size(dis);
-     % forward difference of j-th dispalcement,in i-th direction   
-     % no.1 direction
-        r_1=dis(2:md,:);
-        r_0=dis(1:md-1,:);
-        d_r=(r_1-r_0)/con_distance(1);
-        d_r(md,:)=0;
-     % no.2 direction   
-        c_1=dis(:,2:nd);
-        c_0=dis(:,1:nd-1);
-        d_c=(c_1-c_0)/con_distance(2);
-        d_c(:,nd)=0;
-        Dd(k:k+1,:)=[d_r(:)';d_c(:)'];
-        k=k+2;
-     end
-%      Dd=Dd(:);
+function Dd = D(dr,dc)  %2-D
+      [dr_dc,dr_dr]=gradient(dr);
+      [dc_dc,dc_dr]=gradient(dc);
+      
+      Dd=[dr_dr(:)';dr_dc(:)';dc_dr(:)';dc_dc(:)'];
 end
