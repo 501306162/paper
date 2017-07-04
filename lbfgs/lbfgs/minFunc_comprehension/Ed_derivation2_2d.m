@@ -1,10 +1,10 @@
-function [ki_up, dki_up] =Ed_derivation2_2d(ffo,fmo,k,rho,Dissimilarity,spacing,ddk,ZU_diff)
+function [ki_up, dki_up] =Ed_derivation2_2d(k,ffo,fmo,rho,Dissimilarity,spacing,ddk,ZU_diff)
 % k-update 把k看成一个向量来计算,求出一个点的位移场更新  
 % 对一个向量进行位移场更新...返回找到最小值的点...即最小 f 对应的 k..
 %  
 %     输入最好是一维列向量...输出也是一维列向量
-%   k    是 1行  L列
-%   u、z 是 n2行 L列
+%   k    是 1列  n*L行...一共3维/
+%   Dk、u、z 是 n2列 L行
 
     num_control=numel(fmo); 
     [m,n]=size(fmo);
@@ -43,17 +43,17 @@ function [ki_up, dki_up] =Ed_derivation2_2d(ffo,fmo,k,rho,Dissimilarity,spacing,
     k_up_1r=dMetric.*dfm_r.*ddk;
     k_up_1c=dMetric.*dfm_c.*ddk;
 %     k_up_1z=dMetric.*dfm_z.*ddk;
-    
+    k_up_1=[k_up_1r(:)';k_up_1c(:)'];
 
     % D_conju_new  输入为dr,dc对应图像矩阵...返回值第一行为第一维度,第二行对应第二维度,都为L列
     % D_new   返回值为[d11;d12;d21;d22]...其中dii为L维列向量...故ZU_diff也应该是这个维度
- 怎么调整？    
+    
     temp=D_new(kr,kc)-ZU_diff;  
-    k_up_2=rho.*D_conju_new(kr,kc)*temp; 
+    k_up_2=rho.*D_conju_new2(temp,num_control,m,n); 
     
-    % 应该输出维度为 (1,L) 
-    dki_up=
-    
+    % 应该输出维度为 (1,n*L) 
+    dki_up=(k_up_1+k_up_2)';
+    dki_up=dki_up(:);
 end
 
 %  以下函数输入均为图像,返回也为图像

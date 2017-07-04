@@ -1,4 +1,4 @@
-function [d, history] = Untitled(A, b, p,mu, rho0, alpha)
+function [d, history] = isopTV_new(A, b, p,mu, rho0, alpha)
 % solves the following problem via ADMM:%
 %   minimize   E_D(d(k);f_f,f_m)+lamda*eta*||Z||_2,1
 %   s.t.       D(k)=Z;
@@ -33,8 +33,8 @@ M_pyr=ceil(log2(m/8));
 M_ref=5;
 M_iter=5;
 M_lbgfs=5;
-k(1,0)=0;
 
+Dissimilarity='LLC';
 QUIET    = 0;
 ABSTOL   = 1e-4;
 RELTOL   = 1e-2;
@@ -63,17 +63,32 @@ for j=1:M_pyr+M_ref
     % ADMM solver in j-th level 
     k = zeros(num_control+1,1);
     z = D(k(1:num_control),k(num_control+1:end)); 
-    u = zeros(num_control+1,1);
+    u = zeros(2^2,num_control);
     rho=rho_0;
+    spacing=
+%     % 返回 [neighbors_ind,ddk]
+%     neigh_ddk=neighborhood_trans(control_ind,ffo,spacing,num_control);
+%     %     dk_x=max((1-abs(px_diff(1))./K(1)),0);
+%     %     dk_y=max((1-abs(px_diff(2))./K(2)),0);
+%     %     ddk=dk_x.*dk_y;
+%     %     dk_z=max((1-abs(px_diff)./K(3)),0);
+%     %      neig_zero=neighborhood_trans(ind,ffo_zero,spacing); % K1,K2,K3大小邻域...中的点对应在原图中标号 
+%     
+%     
     
-    % k   是 (1,L) 维
-    % z\u 是(N^2,L)维
+    
+    % k   是 (1,n*L)' 维
+    % z\u 是(N^2,L)'维
     for m_iter = 1:M_iter
         k_old=k;
 未完成
+
         % x-update use lbfgs
-        k = update_x(A, b, u, z, rho); 
-        
+%         k = update_x(A, b, u, z, rho); 
+        k=LBFGS_k(k_old,f_fj,f_mj,rho,Dissimilarity,spacing,ddk,z-u );
+%         LBFGS_k 输出是 (n*L,1)维
+
+
         % 'break' condition
         kk=norm((k-k_old),'inf');% max {row(j)_abs_sum}
         if kk>=kesai_tol
@@ -84,7 +99,7 @@ for j=1:M_pyr+M_ref
         % update with k->D(k)
         z_old = z;
         Dk=D(k(1:num_control),k(num_control+1:end));
-        x_hat = alpha*Dk + (1-alpha)*z_old;
+        x_hat = alpha.*Dk + (1-alpha).*z_old;
         z=update_z(lamda,eat, x_hat, u, rho,p,z_old);         'to check!'
         
         % u-update
@@ -120,40 +135,7 @@ function obj = objective(A, b, mu, x, z)
     obj = sum(log(1 + exp(-A*x(2:end) - b*x(1)))) + m*mu*norm(z,1);
 end
 
-function x = update_x(A, b, u, z, rho, x0)
-    % solve the x update
-    %   minimize [ -logistic(x_i) + (rho/2)||x_i - z^k + u^k||^2 ]
-    % via Newton's method; for a single subsystem only.
-    alpha = 0.1;
-    BETA  = 0.5;
-    TOLERANCE = 1e-5;
-    MAX_ITER = 50;
-    [m n] = size(A);
-    I = eye(n+1);
-    if exist('x0', 'var')
-        x = x0;
-    else
-        x = zeros(n+1,1);
-    end
-    C = [-b -A];
-    f = @(w) (sum(log(1 + exp(C*w))) + (rho/2)*norm(w - z + u).^2);
-    for iter = 1:MAX_ITER
-        fx = f(x);
-        g = C'*(exp(C*x)./(1 + exp(C*x))) + rho*(x - z + u);
-        H = C' * diag(exp(C*x)./(1 + exp(C*x)).^2) * C + rho*I;
-        dx = -H\g;   % Newton step
-        dfx = g'*dx; % Newton decrement
-        if abs(dfx) < TOLERANCE
-            break;
-        end
-        % backtracking
-        t = 1;
-        while f(x + t*dx) > fx + alpha*t*dfx
-            t = BETA*t;
-        end
-        x = x + t*dx;
-    end
-end
+
 
 %% z-updata
 
