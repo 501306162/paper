@@ -1,4 +1,4 @@
-function [I_tran,Trans]=bspline_registration_image(O_grid,sizes,Spacing,I1,I2,type)
+function [I_tran,Trans]=bspline_registration_image(O_grid,sizes,Spacing,I1)
 % Function Registration_image. This function will create
 % an small registration error image after b-spline non-rigid registration
 % of two images / volumes.

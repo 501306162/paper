@@ -27,11 +27,11 @@ if(~exist('mode','var')), mode=0; end
 if(size(I,3)<4)
     if(~isa(I,'double')), I=im2double(I); end
     if(nargout > 1 )
-        [I,Tx,Ty]=bspline_transform_2d_double(double(O(:,:,1)),double(O(:,:,2)),I,double(Spacing(1)),double(Spacing(2)),double(mode));
+        [I,Tx,Ty]=bspline_transform_2d_double(double(O),I,double(Spacing(1)),double(Spacing(2)),double(mode));
         T(:,:,1)=Tx; 
         T(:,:,2)=Ty;
     else
-        I=bspline_transform_2d_double(double(O(:,:,1)),double(O(:,:,2)),I,double(Spacing(1)),double(Spacing(2)),double(mode));
+        I=bspline_transform_2d_double(double(O),I,double(Spacing(1)),double(Spacing(2)),double(mode));
         T=0;
     end
 else

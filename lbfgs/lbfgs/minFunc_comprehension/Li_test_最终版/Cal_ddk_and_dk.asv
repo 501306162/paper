@@ -1,0 +1,20 @@
+function [dk,ddk]=C(kr,kc,m,n)
+% Read two greyscale images of Lena
+I1=double(deformation_image); 
+
+% b-spline grid spacing in x and y direction
+Spacing=[4 4];
+
+% the k_grid
+O_m=length(0:Spacing(1):m);
+O_n=length(0:Spacing(2):n);
+
+O_trans=ones(O_m,O_n,2);
+O_trans(:,:,1)=kr;
+O_trans(:,:,2)=kc;
+O_trans=double(O_trans);
+ 
+% Transform the image with the B-spline grid
+[I_tran,dkx,dky]=bspline_transform(O_trans,I1,Spacing);
+
+end

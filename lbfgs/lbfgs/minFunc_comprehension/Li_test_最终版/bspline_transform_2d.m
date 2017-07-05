@@ -1,4 +1,4 @@
-function [Iout,Tx,Ty]=bspline_transform_2d_double(Ox,Oy,Iin,dx,dy,mode)
+function [Tx,Ty,ddk]=bspline_transform_2d(O_trans,Spacing1,Spacing2,mode,Sizes)
 % Bspline transformation grid function
 % 
 % [Iout,Tx,Ty]=bspline_transform_2d_double(Ox,Oy,Iin,dx,dy,mode)
@@ -28,11 +28,10 @@ function [Iout,Tx,Ty]=bspline_transform_2d_double(Ox,Oy,Iin,dx,dy,mode)
 % Function is written by D.Kroon University of Twente (June 2009)
 
 % Make all x,y indices
-[x,y]=ndgrid(0:size(Iin,1)-1,0:size(Iin,2)-1);
+[x,y]=ndgrid(0:Sizes(1)-1,0:Sizes(2)-1);
 
 % Calulate the transformation of all image coordinates by the b-spline grid
-O_trans(:,:,1)=Ox; O_trans(:,:,2)=Oy;
-Tlocal=bspline_trans_points_double_1st(O_trans,[dx dy],[x(:) y(:)],false);
+[Tlocal,ddk]=bspline_trans_points(O_trans,[Spacing1 Spacing2],[x(:) y(:)],false);
 
 switch(mode)
 	case 0
@@ -51,7 +50,8 @@ end
 
 if(nargout>1)
     % Store transformation fields
-    Tx=reshape(Tlocal(:,1),[size(Iin,1) size(Iin,2)])-x;  
-    Ty=reshape(Tlocal(:,2),[size(Iin,1) size(Iin,2)])-y; 
+    Tx=reshape(Tlocal(:,1),[Sizes(1) Sizes(2)]);  
+    Ty=reshape(Tlocal(:,2),[Sizes(1) Sizes(2)]); 
 end
-Iout=image_interpolation(Iin,Tlocal(:,1),Tlocal(:,2),Interpolation,Boundary);
+% Iout=image_interpolation(Iin,Tlocal(:,1),Tlocal(:,2),Interpolation,Boundary);
+end

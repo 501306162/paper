@@ -3,30 +3,21 @@
 addpaths
 
 % Read two greyscale images of Lena
-I1=im2double(f_mj); 
-I2=im2double(f_fj);
+I1=double(deformation_image); 
 
 % b-spline grid spacing in x and y direction
 Spacing=[4 4];
+ 
+O_m=length(0:Spacing(1):m);
+O_n=length(0:Spacing(2):n);
 
-% Make the Initial b-spline registration grid
-[k_grid]=make_init_grid(Spacing,size(I1));
-
-% Convert all values tot type double
-I1=double(I1); I2=double(I2); k_grid=double(k_grid); 
-
-% Smooth both images for faster registration
-I1s=imfilter(I1,fspecial('gaussian',[20 20],5));
-I2s=imfilter(I2,fspecial('gaussian',[20 20],5));
-
-% Optimizer parameters
-optim=optimset('Display','iter','MaxIter',40);
-
-% Reshape O_trans from a matrix to a vector.
-sizes=size(k_grid); k_grid=k_grid(:);
-
-% Start the b-spline nonrigid registration optimizer
-k_grid = lsqnonlin(@(x)bspline_registration_image(x,sizes,Spacing,I1s,I2s,type),k_grid,[],[],optim);
+O_trans=ones(O_m,O_n,2);
+O_trans(:,:,1)=kr;
+O_trans(:,:,2)=kc;
+O_trans=double(O_trans);
+ 
+% Transform the image with the B-spline grid
+[I_tran,dkx,dky]=bspline_transform(O_trans,I1,Spacing);
 
 % Reshape O_trans from a vector to a matrix
 k_grid=reshape(k_grid,sizes);

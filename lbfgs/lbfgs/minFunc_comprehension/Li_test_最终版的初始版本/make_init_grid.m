@@ -15,16 +15,20 @@ function O_trans=make_init_grid(Spacing,sizeI)
 %    O = make_init_grid([8 8],size(I1));
 %
 %  Function is written by D.Kroon University of Twente (September 2008)
-  
+
+
+  % 获得网格点矩阵及其坐标
 if(length(Spacing)==2)
     % Determine grid spacing
     dx=Spacing(1); dy=Spacing(2);
 
     % Calculate te grid coordinates (make the grid)
-    [X,Y]=ndgrid(-dx:dx:(sizeI(1)+(dx*2)),-dy:dy:(sizeI(2)+(dy*2)));
+    [X,Y]=ndgrid(0:dx:(sizeI(1)),0:dy:(sizeI(2)));
     O_trans=ones(size(X,1),size(X,2),2);
     O_trans(:,:,1)=X;
     O_trans(:,:,2)=Y;
+
+    
 else
     % Determine grid spacing
     dx=Spacing(1); dy=Spacing(2); dz=Spacing(3);
@@ -37,5 +41,4 @@ else
     O_trans(:,:,:,3)=Z;
     
 end
-    
-    
+end
