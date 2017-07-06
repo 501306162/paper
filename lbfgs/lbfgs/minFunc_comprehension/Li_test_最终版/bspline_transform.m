@@ -1,4 +1,4 @@
-function [T,ddk]=bspline_transform(O,Spacing,Sizes,mode)
+function [T]=bspline_transform(O,Spacing,Sizes,mode)
 % Function bspline_transform, is a wrapper of the mex 
 % bspline_transform_2d_double and bspline_transform_3d mex functions
 %
@@ -25,7 +25,7 @@ if(sum(Spacing-floor(Spacing))>0), error('Spacing must be a integer'); end
 if(~exist('mode','var')), mode=0; end
 
 if(numel(Sizes)<3)
-    [Tx,Ty,ddk]=bspline_transform_2d(double(O),double(Spacing(1)),double(Spacing(2)),double(mode),Sizes);
+    [Tx,Ty]=bspline_transform_2d(double(O),double(Spacing(1)),double(Spacing(2)),Sizes);
     T(:,:,1)=Tx; 
     T(:,:,2)=Ty;
 else

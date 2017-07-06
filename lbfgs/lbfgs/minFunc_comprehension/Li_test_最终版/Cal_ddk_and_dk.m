@@ -13,6 +13,6 @@ O_trans(:,:,2)=kc;
 O_trans=double(O_trans);
  
 % Transform the image with the B-spline grid
-[dk,ddk]=bspline_transform(O_trans,Spacing,[m,n]);
-
+[dk]=bspline_transform(O_trans,Spacing,[m,n]);
+ddk = Cal_ddk( m,n,Spacing );
 end

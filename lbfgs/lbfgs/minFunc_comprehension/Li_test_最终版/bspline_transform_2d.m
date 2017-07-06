@@ -1,4 +1,4 @@
-function [Tx,Ty,ddk]=bspline_transform_2d(O_trans,Spacing1,Spacing2,mode,Sizes)
+function [Tx,Ty]=bspline_transform_2d(O_trans,Spacing1,Spacing2,Sizes)
 % Bspline transformation grid function
 % 
 % [Iout,Tx,Ty]=bspline_transform_2d_double(Ox,Oy,Iin,dx,dy,mode)
@@ -31,22 +31,22 @@ function [Tx,Ty,ddk]=bspline_transform_2d(O_trans,Spacing1,Spacing2,mode,Sizes)
 [x,y]=ndgrid(0:Sizes(1)-1,0:Sizes(2)-1);
 
 % Calulate the transformation of all image coordinates by the b-spline grid
-[Tlocal,ddk]=bspline_trans_points(O_trans,[Spacing1 Spacing2],[x(:) y(:)],false);
+[Tlocal]=bspline_trans_points(O_trans,[Spacing1 Spacing2],[x(:) y(:)],false);
 
-switch(mode)
-	case 0
-		Interpolation='bilinear';
-		Boundary='replicate';
-	case 1
-		Interpolation='bilinear';
-		Boundary='zero';
-	case 2
-		Interpolation='bicubic';
-		Boundary='replicate';
-	otherwise
-		Interpolation='bicubic';
-		Boundary='zero';
-end
+% switch(mode)
+% 	case 0
+% 		Interpolation='bilinear';
+% 		Boundary='replicate';
+% 	case 1
+% 		Interpolation='bilinear';
+% 		Boundary='zero';
+% 	case 2
+% 		Interpolation='bicubic';
+% 		Boundary='replicate';
+% 	otherwise
+% 		Interpolation='bicubic';
+% 		Boundary='zero';
+% end
 
 if(nargout>1)
     % Store transformation fields

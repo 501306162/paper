@@ -1,4 +1,4 @@
-function [Tlocal,ddk]=bspline_trans_points(O_trans,Spacing,X,check)
+function [Tlocal]=bspline_trans_points(O_trans,Spacing,X,check)
 % If Spacing and points are not an integer, we can not use fast look up tables,
 % but have to calculate the bspline coefficients for every point
 % X is [x(:),y(:)]=ndgrid(0:size(Iin,1)-1,0:size(Iin,2)-1);
@@ -9,15 +9,15 @@ end
 switch size(X,2)
     case 2,
         if(check)
-            [Tlocal,ddk]=bspline_transform_slow_2d(O_trans,Spacing,X);
+            [Tlocal]=bspline_transform_slow_2d(O_trans,Spacing,X);
         else
-            [Tlocal,ddk]=bspline_transform_fast_2d(O_trans,Spacing,X);
+            [Tlocal]=bspline_transform_fast_2d(O_trans,Spacing,X);
         end
     case 3,
-        [Tlocal,ddk]=bspline_transform_slow_3d(O_trans,Spacing,X);
+        [Tlocal]=bspline_transform_slow_3d(O_trans,Spacing,X);
 end
 end
-function [Tlocal,ddk]=bspline_transform_fast_2d(O_trans,Spacing,X)
+function [Tlocal]=bspline_transform_fast_2d(O_trans,Spacing,X)
 % Make row vectors of input coordinates
 x2=X(:,1); y2=X(:,2); % 像素点坐标0~size(I)-1
 
@@ -50,13 +50,13 @@ j=floor(y2/Spacing(2));  % 块的标号
 %      |   |   | 
 % This part calculates the coordinates of the pixel
 % which will be transformed to the current x,y pixel.
-
-% x2,y2是像素点坐标...IndexO1是像素点对应控制点标号,即坐标
-x_dif=u_index;
-y_dif=v_index;
-ddk_x=1-abs(x_dif)./Spacing(1);
-ddk_y=1-abs(y_dif)./Spacing(2);
-ddk=max(ddk_x,0).*max(ddk_y,0);
+% 
+% % x2,y2是像素点坐标...IndexO1是像素点对应控制点标号,即坐标
+% x_dif=u_index;
+% y_dif=v_index;
+% ddk_x=1-abs(x_dif)./Spacing(1);
+% ddk_y=1-abs(y_dif)./Spacing(2);
+% ddk=max(ddk_x,0).*max(ddk_y,0);
 
 Ox=O_trans(:,:,1); % 网格点的位移...
 Oy=O_trans(:,:,2);

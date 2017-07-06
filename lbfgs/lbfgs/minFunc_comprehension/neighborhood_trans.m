@@ -1,21 +1,21 @@
-function neighbors_ind=neighborhood_trans(ind,image,K)
+function ddk=neighborhood_trans(ind,sizes,K)
 % return the neighbors'index of 'ind ' pixel 
 N=numel(size(K));
 switch (N)
     case 2
-       neighbors_ind= neighborhood2d(ind,image,K);
+       ddk= neighborhood2d(ind,sizes,K);
     case 3
-       neighbors_ind= neighborhood3d(ind,image,K);   
+       ddk= neighborhood3d(ind,sizes,K);   
     otherwise
        fprintf('%d is not include in the neighborhood type!',N); 
 end
 
 end
-function neighbors_ind=neighborhood2d(ind,image,K)
+function ddk=neighborhood2d(ind,sizes,K)
 % return the neighbors'index of 'ind ' pixel
-[r,c]=ind2sub(size(image),ind);
+[r,c]=ind2sub(sizes,ind);
 subfirst=[K(1),K(2)];
-subend=size(image);
+subend=sizes;
 
 % subscript in moving image
 neig_sub_begin=max(subfirst,[r,c]-subfirst);
@@ -28,9 +28,15 @@ row=repmat((neig_sub_begin(1):1:neig_sub_end(1)),col_size,1);   % row(:)-->111 2
 col=repmat((neig_sub_begin(2):1:neig_sub_end(2)),1,row_size);   % col(:)-->123 123 123
 
 % the neighbors include the 'ind' pixel
-neighbors_ind=sub2ind(size(image),row(:),col(:));
-% the neighbors exclude the 'ind' pixel
-neighbors_ind(neighbors_ind==ind)=[];
+neighbors_ind=sub2ind(sizes,row(:),col(:));
+% % the neighbors exclude the 'ind' pixel
+% neighbors_ind(neighbors_ind==ind)=[];
+
+ddk_1=max((1-abs(row(:)-r)./K(1)),0);
+ddk_2=max((1-abs(col(:)-c)./K(2)),0);
+
+% ddk=zeros(num_control,1);
+ddk=[neighbors_ind(:),ddk_1.*ddk_2];
 % % translate the current pixel to the first one
 % neighbors_ind=[ind,neighbors_ind(:)];
 
@@ -38,7 +44,7 @@ neighbors_ind(neighbors_ind==ind)=[];
 % clique
 end
 
-function neighbors_ind=neighborhood3d(ind,image,K)
+function ddk=neighborhood3d(ind,image,K)
 % return the neighbors'index of 'ind ' pixel
 
 [r,c,s]=ind2sub(size(image),ind);

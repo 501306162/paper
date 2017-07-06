@@ -41,11 +41,7 @@ RELTOL   = 1e-2;
 kesai_tol= 1e-2;
 
 % Data preprocessing
-
 [m, n] = size(A);
-
-
-
 
 % M_pyr sovler
 for j=1:M_pyr+M_ref  
@@ -57,40 +53,28 @@ for j=1:M_pyr+M_ref
         f_mj=f_mj_old;
         f_fj=f_fj_old;
     end
-
-    Spacing=[4 4];   
-    num_control=numel(f_mj);
+    
+    [m, n] = size(f_mj);
     % ADMM solver in j-th level 
-    k = zeros(num_control+1,1);
+    Spacing=[4 4];
+    km=length(0:Spacing(1):m);
+    kn=length(0:Spacing(2):n);
+    num_control=km*kn;
     
+    k = zeros(num_control,1);
+    k_grid=reshape(k,km,kn,2);       
+    z = D(k_grid(:,:,1),k_grid(:,:,2)); 
+    u = zeros(sizze(z));
+    rho=rho_0;     
     
-    z = D(k(1:num_control),k(num_control+1:end)); 
-    u = zeros(2^2,num_control);
-    rho=rho_0;
-
-%     % 返回 [neighbors_ind,ddk]
-%     neigh_ddk=neighborhood_trans(control_ind,ffo,spacing,num_control);
-%     %     dk_x=max((1-abs(px_diff(1))./K(1)),0);
-%     %     dk_y=max((1-abs(px_diff(2))./K(2)),0);
-%     %     ddk=dk_x.*dk_y;
-%     %     dk_z=max((1-abs(px_diff)./K(3)),0);
-%     %      neig_zero=neighborhood_trans(ind,ffo_zero,spacing); % K1,K2,K3大小邻域...中的点对应在原图中标号 
-%     
-%     
-    
-    
-    % k   是 (1,n*L)' 维
-    % z\u 是(N^2,L)'维
+    % k   是 (n*L,1)维
+    % z\u 是(L,N^2)'维
     for m_iter = 1:M_iter
         k_old=k;
-未完成
-
         % x-update use lbfgs
-%         k = update_x(A, b, u, z, rho); 
-        k=LBFGS_k(k_old,f_fj,f_mj,rho,Dissimilarity,spacing,ddk,z-u );
-%         LBFGS_k 输出是 (n*L,1)维
-
-
+        % LBFGS_k 输出是 (n*L,1)维
+        k=LBFGS_k(k_old,f_fj,f_mj,rho,Dissimilarity,Spacing,z-u );
+        k_grid=reshape(k,km,kn,2);     
         % 'break' condition
         kk=norm((k-k_old),'inf');% max {row(j)_abs_sum}
         if kk>=kesai_tol
@@ -100,9 +84,9 @@ for j=1:M_pyr+M_ref
         % z-update with relaxation && use group lasso
         % update with k->D(k)
         z_old = z;
-        Dk=D(k(1:num_control),k(num_control+1:end));
+        Dk=D(k_grid(:,:,1),k_grid(:,:,2));
         x_hat = alpha.*Dk + (1-alpha).*z_old;
-        z=update_z(lamda,eat, x_hat, u, rho,p,z_old);         'to check!'
+        z=update_z(lamda,eta, x_hat, u, rho,p,z_old);         'to check!'
         
         % u-update
         u = u + (x_hat - z);
@@ -154,12 +138,12 @@ function z_out = update_z(lamda,eta, x_hat, u, rho,p,z_old)
     end
     z_out=z_old;
 end
-% function z = shrinkage(a, kappa)
-%     z = max(0, a-kappa) - max(0, -a-kappa);
-% end
 function z = shrinkage(a, kappa)
-    z = pos(1 - kappa/norm(a))*a;
+    z = max(0, a-kappa) - max(0, -a-kappa);
 end
+% function z = shrinkage(a, kappa)
+%     z = pos(1 - kappa/norm(a))*a;
+% end
 % the function D(d) used in TV-Regularization
 function Dd = D(dr,dc)  %2-D
       [dr_dc,dr_dr]=gradient(dr);
