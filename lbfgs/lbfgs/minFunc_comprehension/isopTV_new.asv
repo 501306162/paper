@@ -66,7 +66,7 @@ for j=1:M_pyr+M_ref
     z = D(k_grid(:,:,1),k_grid(:,:,2)); 
     u = zeros(size(z));
     rho=rho_0;     
-    eta=prod(Spacing.*delta);
+    eta=Spacing.*delta;
     % k   ÊÇ (n*L,1)Î¬
     % z\u ÊÇ(L,N^2)'Î¬
     for m_iter = 1:M_iter
@@ -86,7 +86,7 @@ for j=1:M_pyr+M_ref
         z_old = z;
         Dk=D(k_grid(:,:,1),k_grid(:,:,2));
         x_hat = alpha.*Dk + (1-alpha).*z_old;
-        z=update_z(lamda,eta, x_hat, u, rho,p,z_old);         
+        z=update_z(lamda,eta, x_hat, u, rho,p,z_old);         'to check!'
         
         % u-update
         u = u + (x_hat - z);
