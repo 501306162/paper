@@ -1,4 +1,4 @@
-function [ki_up, dki_up] =Ed_2d(k,ffo,fmo,rho,Dissimilarity,Spacing,ZU_diff)
+function [ki_up, dki_up] =Ed_2d(k,ffo,fmo,rho,Dissimilarity,Spacing,delta,ZU_diff)
 % k-update 把k看成一个向量来计算,求出一个点的位移场更新  
 % 对一个向量进行位移场更新...返回找到最小值的点...即最小 f 对应的 k..
 %  
@@ -10,7 +10,7 @@ function [ki_up, dki_up] =Ed_2d(k,ffo,fmo,rho,Dissimilarity,Spacing,ZU_diff)
     [kx,ky]=ndgrid(0:Spacing(1):m,0:Spacing(2):n); % 网格坐标
     [x,y]=ndgrid(0:m-1,0:n-1); % 像素坐标    
     
-    v=prod(Spacing);
+    v=prod(delta);
     k_m=size(kx,1);  
     k_n=size(kx,2);
     num_control=k_m*k_n;     
@@ -19,13 +19,19 @@ function [ki_up, dki_up] =Ed_2d(k,ffo,fmo,rho,Dissimilarity,Spacing,ZU_diff)
     % 网格位移矩阵
     k_grid=reshape(k,k_m,k_n,2); % 第一片为Tr,第二片为Tc
     k_grid=double(k_grid);
-    
+ fprintf('minFunc in  BFGS :k\n');
+k(:)'
+fprintf('---------------------------------------\n');   
     % 由网格位移获得的像素点位移剧矩阵
     dk=bspline_transform(k_grid,Spacing,[m,n]);
-
+ fprintf('minFunc in  BFGS :dk\n');
+dk(:)'
+fprintf('---------------------------------------\n');   
     % 移动以后图像 ...
     f_m=movepixels_2d(fmo,dk(:,:,1),dk(:,:,2));
-   
+    figure,
+    subplot(1,2,1), imshow(f_m,[]); title('浮动图');
+    subplot(1,2,2), imshow(ffo,[]); title('固定图');
     % 第一项操作  返回值与图像同维度..
     switch Dissimilarity        
         case 'SSD'
