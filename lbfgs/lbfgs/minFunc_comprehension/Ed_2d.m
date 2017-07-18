@@ -7,7 +7,7 @@ function [ki_up, dki_up] =Ed_2d(k,ffo,fmo,rho,Dissimilarity,Spacing,delta,ZU_dif
 %   Dk、u、z 是 n2列 L行
 
     [m,n]=size(fmo);
-    [kx,ky]=ndgrid(0:Spacing(1):m,0:Spacing(2):n); % 网格坐标
+    [kx,ky]=ndgrid(0:Spacing(1):m-1,0:Spacing(2):n-1); % 网格坐标
     [x,y]=ndgrid(0:m-1,0:n-1); % 像素坐标    
     
     v=prod(delta);
@@ -54,6 +54,8 @@ fprintf('---------------------------------------\n');
     
     for i=1:num_control
         k_p=find(x==kx(i)&y==ky(i));    % 找到控制点在像素矩阵中的位置
+        
+%         返回了空k_p值
         ddk=neighborhood_trans(k_p,[m n],Spacing);       
         neigh_ind=ddk(:,1);       
         

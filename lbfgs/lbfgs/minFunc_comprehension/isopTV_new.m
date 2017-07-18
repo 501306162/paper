@@ -21,15 +21,15 @@ t_start = tic;
 % Global constants and defaults
 % f_m=randi(10,10,10);
 % f_f=randi(10,10,10);
-% [m,n]=size(f_m);
+[m,n]=size(f_m);
 % lamda=0.1;
 % rho_0=5;
 mu=10;
 tao=1.3;
-   f_mj=f_m;
-    f_fj=f_f;
-    
-    [m, n] = size(f_mj);
+%    f_mj=f_m;
+%     f_fj=f_f;
+%     
+%     [m, n] = size(f_mj);
     
 % w=2.5;
 M_pyr=ceil(log2(m/8));
@@ -42,35 +42,42 @@ QUIET    = 0;
 % ABSTOL   = 1e-4;
 % RELTOL   = 1e-2;
 kesai_tol= 1e-2;
-Spacing=[4 4];
-    km=length(0:Spacing(1):m);
-    kn=length(0:Spacing(2):n);
-    num_control=km*kn;     % 区分第一次和之后的迭代
-    k = zeros(num_control*2,1);
-
-% k = zeros(num_control,1);
-
-% M_pyr sovler
-% for j=1:M_pyr+M_ref  
-%     if j<M_pyr       金字塔创建 delta 大小
-%         %%
-%         f_mj=f_m(M_pyr-j)  %(Mpyr - j )-th Gaussian pyramid level of fm
-%         f_fj=f_f(M_pyr-j)  %(Mpyr - j )-th Gaussian pyramid level of ff
-%     else
-%         f_mj=f_mj_old;
-%         f_fj=f_fj_old;
-%     end
-%     f_mj=f_m;
-%     f_fj=f_f;
-%     
-%     [m, n] = size(f_mj);
-    delta=1;
-
-    % ADMM solver in j-th level 
-%     km=length(0:Spacing(1):m);
-%     kn=length(0:Spacing(2):n);
+Spacing=[4,4];
+%     km=length(0:Spacing(1):m-1);
+%     kn=length(0:Spacing(2):n-1);
 %     num_control=km*kn;     % 区分第一次和之后的迭代
 %     k = zeros(num_control*2,1);
+
+dimen=size(f_m);
+
+% M_pyr sovler
+for j=1:(M_pyr+M_ref)  
+    if j<=M_pyr       金字塔创建 delta 大小
+        %%
+        % level_size=floor(dimen/2^(j-1));  % 返回各层维度对应大小...j从0开始,故是  原图..原图/2....
+        % 由于k采用的是上采样...所以是要从小图到大图
+        level_size=floor(dimen/2^(M_pyr-j));  % 以3为例 ,依次为 原图大小除以 4,2,1
+       
+        f_mj=imresize(f_m,level_size);  %(Mpyr - j )-th Gaussian pyramid level of fm
+        f_fj=imresize(f_f,level_size);  %(Mpyr - j )-th Gaussian pyramid level of ff
+        
+        delta=dimen./level_size;
+
+    else
+        f_mj=f_mj_old;
+        f_fj=f_fj_old;
+    end
+%     f_mj=f_m;
+%     f_fj=f_f;
+    
+    [m, n] = size(f_mj);
+%     delta=1;
+
+    % ADMM solver in j-th level 
+    km=length(0:Spacing(1):m-1);
+    kn=length(0:Spacing(2):n-1);
+    num_control=km*kn;     % 区分第一次和之后的迭代
+    k = zeros(num_control*2,1);
     k_grid=reshape(k,km,kn,2);       
     z = D(k_grid(:,:,1),k_grid(:,:,2)); 
     u = zeros(size(z));
@@ -116,11 +123,17 @@ Spacing=[4 4];
 
     end % end of M_iter
 
+    f_mj_old=f_mj;
+    f_fj_old=f_fj;
+    
+    上采样
+    k=upsample(k)
+
     if ~QUIET
         toc(t_start);
     end
       
-% end % end of M_pyr
+end % end of M_pyr
 
 end % end of function
 
