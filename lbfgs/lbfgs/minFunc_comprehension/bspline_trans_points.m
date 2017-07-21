@@ -109,91 +109,108 @@ Tlocal(:,2)=Tlocaly(:);
 
 end
 % 
-% function Tlocal=bspline_transform_slow_2d(O_trans,Spacing,X)
+function Tlocal=bspline_transform_slow_2d(O_trans,Spacing,X)
+
+% Make row vectors of input coordinates
+x2=X(:,1); y2=X(:,2); % 图像坐标
+
+% This code calculates for every coordinate in X, the indices of all
+% b-spline knots which have influence on the transformation value of
+% this point
+[m,l]=ndgrid(0:3,0:3); m=m(:)'; l=l(:)';
+
+ixs=floor(x2/Spacing(1));  % 图像点所属的块标号 。。。1 列向量 ...spacing 取4
+                            % x2:  0 1 2 3 ,4 5 6 ...     ->  0,0,0,0 * 1,1,1,1...
+iys=floor(y2/Spacing(2));   % y2:  0 0 0 0 ,0 0 0 ...     ->  0,0,0,0 * 0,0,0,0... 竖着读标号矩阵
+
+ % 像素点周围4*4范围的控制点在控制矩阵中的坐标                           
+ix=repmat(ixs,[1 16])+repmat(m,[length(x2) 1]); ix=ix(:);  
+iy=repmat(iys,[1 16])+repmat(l,[length(y2) 1]); iy=iy(:);   
+
+% 以 （x2，y2）=（0，0）为例： （0到第一个SPACING点范围内的值都和下方一致）。。。即，将spacing范围内所有点限制到 0号 控制点上
+% ix=0,1,2,3...0,1,2,3...0,1,2,3...0,1,2,3...        
+% iy=0,0,0,0...1,1,1,1...2,2,2,2...3,3,3,3...
+% ... 0 __ d__ h__l___
+% ... a |__e|__i|__m|...      以00为原点的，a->n,p顺序的控制点
+% ... b |__f|__j|__n|...
+% ... c |__g|__k|__p|...
+%     1 |   |   |   |
+%以 （x2，y2）=（4，0）为例： 
+% ix=1,2,3,4...1,2,3,4...1,2,3,4...1,2,3,4...        
+% iy=0,0,0,0...1,1,1,1...2,2,2,2...3,3,3,3...
+
+% Size of the b-spline grid
+s=size(O_trans);   % 网格大小
+  
+% Points outside the bspline grid are set to the upper corner
+Check_bound=(ix<0)|(ix>(s(1)-1))|(iy<0)|(iy>(s(2)-1));   % 超出位置设为1 其余0
+ix(Check_bound)=1; iy(Check_bound)=1;
+Check_bound_inv=double(~Check_bound);       % 超出为0 其余1
+
+% Look up the b-spline knot values in neighborhood of the points in (x2,y2)
+Cx=O_trans(ix+iy*s(1)+1).*Check_bound_inv;  % 获得未超范围像素对应的控制点的行位移值
+Cx=reshape(Cx,[length(x2) 16]);
+
+Cy=O_trans(ix+iy*s(1)+s(1)*s(2)+1).*Check_bound_inv;  % 列位移值
+Cy=reshape(Cy,[length(x2) 16]); 
+
+% Calculate the b-spline interpolation constants u,v in the center cell
+% range between 0 and 1
+v  = (x2-ixs*Spacing(1))/Spacing(1);
+u  = (y2-iys*Spacing(2))/Spacing(2);
+
+% Get the b-spline coefficients in a matrix W, which contains
+% the influence of all knots on the points in (x2,y2)
+W=bspline_coefficients(v,u);
+
+% Calculate the transformation of the points in (x2,y2) by the b-spline grid
+Tlocal(:,1)=sum(W.*Cx,2);
+Tlocal(:,2)=sum(W.*Cy,2);
+end
 % 
-% % Make row vectors of input coordinates
-% x2=X(:,1); y2=X(:,2);
-% 
-% % This code calculates for every coordinate in X, the indices of all
-% % b-spline knots which have influence on the transformation value of
-% % this point
-% [m,l]=ndgrid(0:3,0:3); m=m(:)'; l=l(:)';
-% ixs=floor(x2/Spacing(1));
-% iys=floor(y2/Spacing(2));
-% ix=repmat(ixs,[1 16])+repmat(m,[length(x2) 1]); ix=ix(:);
-% iy=repmat(iys,[1 16])+repmat(l,[length(y2) 1]); iy=iy(:);
-% 
-% % Size of the b-spline grid
-% s=size(O_trans);
-% 
-% % Points outside the bspline grid are set to the upper corner
-% Check_bound=(ix<0)|(ix>(s(1)-1))|(iy<0)|(iy>(s(2)-1));
-% ix(Check_bound)=1; iy(Check_bound)=1;
-% Check_bound_inv=double(~Check_bound);
-% 
-% % Look up the b-spline knot values in neighborhood of the points in (x2,y2)
-% Cx=O_trans(ix+iy*s(1)+1).*Check_bound_inv;
-% Cx=reshape(Cx,[length(x2) 16]);
-% Cy=O_trans(ix+iy*s(1)+s(1)*s(2)+1).*Check_bound_inv;
-% Cy=reshape(Cy,[length(x2) 16]);
-% 
-% % Calculate the b-spline interpolation constants u,v in the center cell
-% % range between 0 and 1
-% v  = (x2-ixs*Spacing(1))/Spacing(1);
-% u  = (y2-iys*Spacing(2))/Spacing(2);
-% 
-% % Get the b-spline coefficients in a matrix W, which contains
-% % the influence of all knots on the points in (x2,y2)
-% W=bspline_coefficients(v,u);
-% 
-% % Calculate the transformation of the points in (x2,y2) by the b-spline grid
-% Tlocal(:,1)=sum(W.*Cx,2);
-% Tlocal(:,2)=sum(W.*Cy,2);
-% end
-% 
-% function Tlocal=bspline_transform_slow_3d(O_trans,Spacing,X)
-% % Make row vectors of input coordinates
-% x2=X(:,1); y2=X(:,2); z2=X(:,3);
-% 
-% % This code calculates for every coordinate in X, the indices of all
-% % b-spline knots which have influence on the transformation value of
-% % this point
-% [m,l,k]=ndgrid(0:3,0:3,0:3); m=m(:)'; l=l(:)'; k=k(:)';
-% ixs=floor(x2/Spacing(1));
-% iys=floor(y2/Spacing(2));
-% izs=floor(z2/Spacing(3));
-% ix=repmat(floor(ixs),[1 64])+repmat(m,[length(x2) 1]); ix=ix(:);
-% iy=repmat(floor(iys),[1 64])+repmat(l,[length(y2) 1]); iy=iy(:);
-% iz=repmat(floor(izs),[1 64])+repmat(k,[length(z2) 1]); iz=iz(:);
-% 
-% % Size of the b-spline grid
-% s=size(O_trans);
-% 
-% % Points outside the bspline grid are set to the upper corner
-% Check_bound=(ix<0)|(ix>(s(1)-1))|(iy<0)|(iy>(s(2)-1))|(iz<0)|(iz>(s(3)-1));
-% ix(Check_bound)=1; iy(Check_bound)=1; iz(Check_bound)=1;
-% Check_bound_inv=double(~Check_bound);
-% 
-% % Look up the b-spline knot values in neighborhood of the points in (x2,y2)
-% Cx=O_trans(ix+iy*s(1) +iz*s(1)*s(2) +                    1).*Check_bound_inv;
-% Cy=O_trans(ix+iy*s(1) +iz*s(1)*s(2) + s(1)*s(2)*s(3)   + 1).*Check_bound_inv;
-% Cz=O_trans(ix+iy*s(1) +iz*s(1)*s(2) + s(1)*s(2)*s(3)*2 + 1).*Check_bound_inv;
-% Cx=reshape(Cx,[length(x2) 64]);
-% Cy=reshape(Cy,[length(x2) 64]);
-% Cz=reshape(Cz,[length(x2) 64]);
-% 
-% % Calculate the b-spline interpolation constants u,v in the center cell
-% % range between 0 and 1
-% v  = (x2-ixs*Spacing(1))/Spacing(1);
-% u  = (y2-iys*Spacing(2))/Spacing(2);
-% w  = (z2-izs*Spacing(3))/Spacing(3);
-% 
-% % Get the b-spline coefficients in a matrix W, which contains
-% % the influence of all knots on the points in (x2,y2)
-% W=bspline_coefficients(v,u,w);
-% 
-% % Calculate the transformation of the points in (x2,y2) by the b-spline grid
-% Tlocal(:,1)=sum(W.*Cx,2);
-% Tlocal(:,2)=sum(W.*Cy,2);
-% Tlocal(:,3)=sum(W.*Cz,2);
-% end
+function Tlocal=bspline_transform_slow_3d(O_trans,Spacing,X)
+% Make row vectors of input coordinates
+x2=X(:,1); y2=X(:,2); z2=X(:,3);
+
+% This code calculates for every coordinate in X, the indices of all
+% b-spline knots which have influence on the transformation value of
+% this point
+[m,l,k]=ndgrid(0:3,0:3,0:3); m=m(:)'; l=l(:)'; k=k(:)';
+ixs=floor(x2/Spacing(1));
+iys=floor(y2/Spacing(2));
+izs=floor(z2/Spacing(3));
+ix=repmat(floor(ixs),[1 64])+repmat(m,[length(x2) 1]); ix=ix(:);
+iy=repmat(floor(iys),[1 64])+repmat(l,[length(y2) 1]); iy=iy(:);
+iz=repmat(floor(izs),[1 64])+repmat(k,[length(z2) 1]); iz=iz(:);
+
+% Size of the b-spline grid
+s=size(O_trans);
+
+% Points outside the bspline grid are set to the upper corner
+Check_bound=(ix<0)|(ix>(s(1)-1))|(iy<0)|(iy>(s(2)-1))|(iz<0)|(iz>(s(3)-1));
+ix(Check_bound)=1; iy(Check_bound)=1; iz(Check_bound)=1;
+Check_bound_inv=double(~Check_bound);
+
+% Look up the b-spline knot values in neighborhood of the points in (x2,y2)
+Cx=O_trans(ix+iy*s(1) +iz*s(1)*s(2) +                    1).*Check_bound_inv;
+Cy=O_trans(ix+iy*s(1) +iz*s(1)*s(2) + s(1)*s(2)*s(3)   + 1).*Check_bound_inv;
+Cz=O_trans(ix+iy*s(1) +iz*s(1)*s(2) + s(1)*s(2)*s(3)*2 + 1).*Check_bound_inv;
+Cx=reshape(Cx,[length(x2) 64]);
+Cy=reshape(Cy,[length(x2) 64]);
+Cz=reshape(Cz,[length(x2) 64]);
+
+% Calculate the b-spline interpolation constants u,v in the center cell
+% range between 0 and 1
+v  = (x2-ixs*Spacing(1))/Spacing(1);
+u  = (y2-iys*Spacing(2))/Spacing(2);
+w  = (z2-izs*Spacing(3))/Spacing(3);
+
+% Get the b-spline coefficients in a matrix W, which contains
+% the influence of all knots on the points in (x2,y2)
+W=bspline_coefficients(v,u,w);
+
+% Calculate the transformation of the points in (x2,y2) by the b-spline grid
+Tlocal(:,1)=sum(W.*Cx,2);
+Tlocal(:,2)=sum(W.*Cy,2);
+Tlocal(:,3)=sum(W.*Cz,2);
+end

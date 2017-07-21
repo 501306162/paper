@@ -1,4 +1,4 @@
-function [z] = isopTV_new(f_m,f_f,lamda,p,rho_0,alpha)
+function [k] = isopTV_new(f_m,f_f,lamda,rho_0,alpha)
 % solves the following problem via ADMM:%, history
 %   minimize   E_D(d(k);f_f,f_m)+lamda*eta*||Z||_2,1
 %   s.t.       D(k)=Z;
@@ -35,7 +35,7 @@ tao=1.3;
 M_pyr=ceil(log2(m/8));
 M_ref=5;
 M_iter=5;
-M_lbgfs=5;
+M_lbgfs=25;
 
 Dissimilarity='SSD';
 QUIET    = 0;
@@ -43,41 +43,38 @@ QUIET    = 0;
 % RELTOL   = 1e-2;
 kesai_tol= 1e-2;
 Spacing=[4,4];
-%     km=length(0:Spacing(1):m-1);
-%     kn=length(0:Spacing(2):n-1);
-%     num_control=km*kn;     % 区分第一次和之后的迭代
-%     k = zeros(num_control*2,1);
-
 dimen=size(f_m);
 
+k = 0;
+
 % M_pyr sovler
-for j=1:(M_pyr+M_ref)  
-    if j<=M_pyr       金字塔创建 delta 大小
-        %%
+for j=1:(M_pyr) %+M_ref 
+    if j<=M_pyr     %  金字塔创建 delta 大小
+        
         % level_size=floor(dimen/2^(j-1));  % 返回各层维度对应大小...j从0开始,故是  原图..原图/2....
         % 由于k采用的是上采样...所以是要从小图到大图
-        level_size=floor(dimen/2^(M_pyr-j));  % 以3为例 ,依次为 原图大小除以 4,2,1
+        temp_size=floor(dimen/2^(M_pyr-j));  % 以3为例 ,依次为 原图大小除以 4,2,1
        
-        f_mj=imresize(f_m,level_size);  %(Mpyr - j )-th Gaussian pyramid level of fm
-        f_fj=imresize(f_f,level_size);  %(Mpyr - j )-th Gaussian pyramid level of ff
+        f_mj=imresize(f_m,temp_size,'bilinear');  %(Mpyr - j )-th Gaussian pyramid level of fm
+        f_fj=imresize(f_f,temp_size,'bilinear');  %(Mpyr - j )-th Gaussian pyramid level of ff
         
-        delta=dimen./level_size;
-
+        delta=dimen./temp_size;
     else
         f_mj=f_mj_old;
         f_fj=f_fj_old;
-    end
-%     f_mj=f_m;
-%     f_fj=f_f;
+    end    
+    
     
     [m, n] = size(f_mj);
-%     delta=1;
 
     % ADMM solver in j-th level 
     km=length(0:Spacing(1):m-1);
     kn=length(0:Spacing(2):n-1);
-    num_control=km*kn;     % 区分第一次和之后的迭代
-    k = zeros(num_control*2,1);
+    if j==1
+        num_control=km*kn;     % 区分第一次和之后的迭代
+        k = zeros(num_control*2,1);
+    end
+
     k_grid=reshape(k,km,kn,2);       
     z = D(k_grid(:,:,1),k_grid(:,:,2)); 
     u = zeros(size(z));
@@ -89,20 +86,22 @@ for j=1:(M_pyr+M_ref)
         k_old=k;
         % x-update use lbfgs
         % LBFGS_k 输出是 (n*L,1)维
-        k=LBFGS_k(k_old,f_fj,f_mj,rho,Dissimilarity,Spacing,delta,z-u ,M_lbgfs);
-        k_grid=reshape(k,km,kn,2);     
+        [k,f_value]=LBFGS_k(k_old,f_fj,f_mj,rho,Dissimilarity,Spacing,delta,z-u ,M_lbgfs);
+        k_grid=reshape(k,km,kn,2); 
+        
         % 'break' condition
         kk=norm((k-k_old),'inf');% max {row(j)_abs_sum}
         if kk>=kesai_tol
         else
             break;
         end
+        
         % z-update with relaxation && use group lasso
         % update with k->D(k)
         z_old = z;
         Dk=D(k_grid(:,:,1),k_grid(:,:,2));
         x_hat = alpha.*Dk + (1-alpha).*z_old;
-        z=update_z(lamda,eta, x_hat, u, rho,p,z_old);         
+        z=update_z(lamda,eta, x_hat, u, rho,z_old);         
         
         % u-update
         u = u + (x_hat - z);
@@ -126,13 +125,28 @@ for j=1:(M_pyr+M_ref)
     f_mj_old=f_mj;
     f_fj_old=f_fj;
     
-    上采样
-    k=upsample(k)
+%     上采样
+%     k_grid=reshape(k,km,kn,2);  % 上面迭代中有
+       if j<M_pyr
+        temp_size=floor(dimen/2^(M_pyr-j-1)); % 以3为例,原图大小/2....原图大小...
+       else
+        temp_size=[m,n];
+       end
+        k_upr=length(0:Spacing(1):temp_size(1)-1);
+        k_upc=length(0:Spacing(2):temp_size(2)-1);
 
+        up_size=[k_upr,k_upc];
+        kr=imresize(k_grid(:,:,1),up_size,'bilinear'); 
+        kc=imresize(k_grid(:,:,2),up_size,'bilinear');
+        
+        k=0;
+        k=[kr(:);kc(:)]; % 变为2*num,1维
+
+    
     if ~QUIET
         toc(t_start);
     end
-      
+      close all
 end % end of M_pyr
 
 end % end of function
@@ -142,7 +156,7 @@ end % end of function
 
 %%
 % z-update
-function z_out = update_z(lamda,eta, x_hat, u, rho,p,z_old) 
+function z_out = update_z(lamda,eta, x_hat, u, rho,z_old) 
 %     % cumulative partition
 %     cum_part = cumsum(p); % cum-part为非奇异维累加和...即由上到下(行方向)累加和
 %     start_ind = 1;

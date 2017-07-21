@@ -13,13 +13,13 @@ end
 end
 function ddk=neighborhood2d(ind,sizes,K)
 % return the neighbors'index of 'ind ' pixel
-ind
-[r,c]=ind2sub(sizes,ind)
-subfirst=[K(1) K(2)]
+% ind
+[r,c]=ind2sub(sizes,ind);
+subfirst=[K(1) K(2)];
 subend=sizes;
 
 % subscript in moving image
-neig_sub_begin=max(subfirst,[r,c]-subfirst)
+neig_sub_begin=max(subfirst,[r,c]-subfirst);
 neig_sub_end=min(subend,[r,c]+subfirst);
 
 row_size=neig_sub_end(1)-neig_sub_begin(1)+1;

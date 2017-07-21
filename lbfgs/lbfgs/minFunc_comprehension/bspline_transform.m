@@ -29,7 +29,7 @@ if(numel(Sizes)<3)
     T(:,:,1)=Tx; 
     T(:,:,2)=Ty;
 else
-    [Tx,Ty,Tz]=bspline_transform_3d_double(double(O(:,:,:,1)),double(O(:,:,:,2)),double(O(:,:,:,3)),double(Spacing(1)),double(Spacing(2)),double(Spacing(3)),double(mode));
+    [Tx,Ty,Tz]=bspline_transform_3d(double(O),double(Spacing(1)),double(Spacing(2)),double(Spacing(3)),Sizes);
     T(:,:,:,1)=Tx; T(:,:,:,2)=Ty; T(:,:,:,3)=Tz;
 end
 

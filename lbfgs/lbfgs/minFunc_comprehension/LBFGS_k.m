@@ -1,4 +1,4 @@
-function [k] = LBFGS_k(k0,ffo,fmo,rho,Dissimilarity,spacing,delta,ZU_diff,M_lbgfs )
+function [k,f] = LBFGS_k(k0,ffo,fmo,rho,Dissimilarity,Spacing,delta,ZU_diff,M_lbgfs )
 
 maxFunEvals = M_lbgfs;
 
@@ -14,11 +14,14 @@ options.display = 'none';
 options.maxFunEvals = maxFunEvals;
 options.Method = 'lbfgs';
 % ¡⁄”Ú   “™º∆À„Ed_derivation2_2d(k,ffo,fmo,rho,Dissimilarity,spacing,ddk,ZU_diff)
-
-k = minFunc(@Ed_2d,k0,options,ffo,fmo,rho,Dissimilarity,spacing,delta,ZU_diff);
-
-fprintf('minFunc with limited-memory BFGS \n');
-k'
-fprintf('---------------------------------------\n');
+if length(size(ffo))<3
+    [k,f] = minFunc(@Ed_2d,k0,options,ffo,fmo,rho,Dissimilarity,Spacing,delta,ZU_diff);
+else 
+    [k,f] = minFunc(@Ed_3d,k0,options,ffo,fmo,rho,Dissimilarity,Spacing,delta,ZU_diff);     
+end
+    
+% fprintf('minFunc with limited-memory BFGS \n');
+% k'
+% fprintf('---------------------------------------\n');
 end
 

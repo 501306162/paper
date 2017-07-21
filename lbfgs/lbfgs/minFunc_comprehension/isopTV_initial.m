@@ -1,9 +1,10 @@
 % Group lasso example with random data
-cd E:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension
+cd D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension
 addpath(genpath(pwd))
-mexAll
+% mexAll
 %% Generate problem data
 clc
+
 clear all
 close all
 randn('seed', 0);
@@ -88,9 +89,31 @@ subplot(1,2,2), imshow(f_f); title('原固定图');
 % subplot(1,2,1), imshow(f_m,[]); title('原浮动图');
 % subplot(1,2,2), imshow(f_f,[]); title('原固定图');
 
+ % mapped to [0 1] interval
+f_mw=(f_m-min(min(f_m)))./(max(max(f_m))-min(min(f_m)));
+f_fw=(f_f-min(min(f_f)))./(max(max(f_f))-min(min(f_f)));
+
 diary diary.txt
-[x] = isopTV_new(f_m,f_f,lamda,partition, rho_0, alpha);
+[k] = isopTV_new_refine(f_mw,f_fw,lamda, rho_0, alpha);
 diary off
 %% Reporting                                                                                                 
+    [m,n]=size(f_m);
+    Spacing=[2 2];
 
+    k_m=length(0:Spacing(1):m-1);  
+    k_n=length(0:Spacing(2):n-1);
 
+    % Construct the k_grid
+    % 网格位移矩阵
+    k_grid=reshape(k,k_m,k_n,2); % 第一片为Tr,第二片为Tc
+    k_grid=double(k_grid);
+
+    % 由网格位移获得的像素点位移矩阵
+    dk=bspline_transform(k_grid,Spacing,[m,n]);
+
+    fprintf('---------------------------------------\n');   
+    % 移动以后图像 ...
+    f_m=movepixels_2d(f_m,dk(:,:,1),dk(:,:,2));
+    figure,
+    subplot(1,2,1), imshow(f_m); title('浮动图');
+    subplot(1,2,2), imshow(f_f); title('固定图');

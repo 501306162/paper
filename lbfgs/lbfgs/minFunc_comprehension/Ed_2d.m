@@ -19,19 +19,20 @@ function [ki_up, dki_up] =Ed_2d(k,ffo,fmo,rho,Dissimilarity,Spacing,delta,ZU_dif
     % 网格位移矩阵
     k_grid=reshape(k,k_m,k_n,2); % 第一片为Tr,第二片为Tc
     k_grid=double(k_grid);
- fprintf('minFunc in  BFGS :k\n');
-k(:)'
-fprintf('---------------------------------------\n');   
-    % 由网格位移获得的像素点位移剧矩阵
+%  fprintf('minFunc in  BFGS :k\n');
+% k(:)'
+% fprintf('---------------------------------------\n');   
+    % 由网格位移获得的像素点位移矩阵
     dk=bspline_transform(k_grid,Spacing,[m,n]);
- fprintf('minFunc in  BFGS :dk\n');
-dk(:)'
-fprintf('---------------------------------------\n');   
+%  fprintf('minFunc in  BFGS :dk\n');
+% dk(:)'
+% fprintf('---------------------------------------\n');   
     % 移动以后图像 ...
     f_m=movepixels_2d(fmo,dk(:,:,1),dk(:,:,2));
     figure,
-    subplot(1,2,1), imshow(f_m,[]); title('浮动图');
-    subplot(1,2,2), imshow(ffo,[]); title('固定图');
+    subplot(1,2,1), imshow(f_m); title('浮动图');
+    subplot(1,2,2), imshow(ffo); title('固定图');
+    
     % 第一项操作  返回值与图像同维度..
     switch Dissimilarity        
         case 'SSD'
