@@ -29,11 +29,11 @@ function [ki_up, dki_up] =Ed_3d(k,ffo,fmo,rho,Dissimilarity,Spacing,delta,ZU_dif
 % dk(:)'
 % fprintf('---------------------------------------\n');   
     % 移动以后图像 ...
-    f_m=movepixels_2d(fmo,dk(:,:,1),dk(:,:,2));
-    figure,
-    subplot(1,2,1), imshow(f_m); title('浮动图');
-    subplot(1,2,2), imshow(ffo); title('固定图');
-    
+    f_m=movepixels_3d(fmo,dk(:,:,:,1),dk(:,:,:,2),dk(:,:,:,3));
+%     figure,
+%     subplot(1,2,1), imshow(f_m); title('浮动图');
+%     subplot(1,2,2), imshow(ffo); title('固定图');
+%     
     % 第一项操作  返回值与图像同维度..
     switch Dissimilarity        
         case 'SSD'
@@ -46,29 +46,30 @@ function [ki_up, dki_up] =Ed_3d(k,ffo,fmo,rho,Dissimilarity,Spacing,delta,ZU_dif
     [dfm_c,dfm_r,dfm_z]=Gradient(f_m);  
     
     % 函数值 一个数
-    ki_up=Metric+(rho/2).*norm(D_new(k_grid(:,:,1),k_grid(:,:,2))-ZU_diff,'fro');
+    ki_up=Metric+(rho/2).*norm(D_new(k_grid(:,:,:,1),k_grid(:,:,:,2),k_grid(:,:,:,3))-ZU_diff,'fro');
     
     % 函数导数值 
     % 第三项  返回当前控制点的邻域标号,以及ddk值       
 
     k_up_1r=zeros(1,num_control);
     k_up_1c=zeros(1,num_control);
-    
+    k_up_1z=zeros(1,num_control);
     for i=1:num_control
-        k_p=find(x==kx(i)&y==ky(i));    % 找到控制点在像素矩阵中的位置
+        k_p=find(x==kx(i)&y==ky(i)&z==kz(i));    % 找到控制点在像素矩阵中的位置
         
 %         返回了空k_p值
-        ddk=neighborhood_trans(k_p,[m n],Spacing);       
+        ddk=neighborhood_trans(k_p,[m n q],Spacing);       
         neigh_ind=ddk(:,1);       
         
         k_up_1r(i)=sum(dMetric(neigh_ind).*dfm_r(neigh_ind).*ddk(:,2));
-        k_up_1c(i)=sum(dMetric(neigh_ind).*dfm_c(neigh_ind).*ddk(:,2));        
+        k_up_1c(i)=sum(dMetric(neigh_ind).*dfm_c(neigh_ind).*ddk(:,2));  
+        k_up_1z(i)=sum(dMetric(neigh_ind).*dfm_z(neigh_ind).*ddk(:,2));   
     end   
 
-    k_up_1=[k_up_1r;k_up_1c]; % 2行 num_control列
+    k_up_1=[k_up_1r;k_up_1c;k_up_1z]; % 2行 num_control列
    
-    temp=D_new(k_grid(:,:,1),k_grid(:,:,2))-ZU_diff;  
-    k_up_2=rho.*D_conju(temp,k_m,k_n); 
+    temp=D_new(k_grid(:,:,:,1),k_grid(:,:,:,2),k_grid(:,:,:,3))-ZU_diff;  
+    k_up_2=rho.*D_conju(temp,k_m,k_n,k_q); 
     
     % 应该输出维度为 (n*L,1) 
     dki_up=(k_up_1+k_up_2)';

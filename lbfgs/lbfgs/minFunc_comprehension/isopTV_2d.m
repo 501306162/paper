@@ -1,4 +1,4 @@
-function [k] = isopTV_new_refine(f_m,f_f,lamda,rho_0,alpha)
+function [k] = isopTV_2d(f_m,f_f,lamda,rho_0,alpha)
 % solves the following problem via ADMM:%, history
 %   minimize   E_D(d(k);f_f,f_m)+lamda*eta*||Z||_2,1
 %   s.t.       D(k)=Z;
@@ -44,10 +44,10 @@ QUIET    = 0;
 kesai_tol= 1e-2;
 Spacing=[4,4];
 dimen=size(f_m);
-
+a=15
 k = 0;
 
-    Hw=fspecial('gaussian',[20 20],2.5);
+    Hw=fspecial('gaussian',[6*a 6*a],a);
     
     f_m=imfilter(f_m,Hw,'conv');
     f_f=imfilter(f_f,Hw,'conv');    
@@ -160,7 +160,7 @@ for j=1:(M_pyr+M_ref ) %
     if ~QUIET
         toc(t_start);
     end
-      close all
+%       close all
 end % end of M_pyr
 
 end % end of function

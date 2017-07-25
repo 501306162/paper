@@ -1,4 +1,4 @@
-function [Tx,Ty]=bspline_transform_3d(O_trans,Spacing1,Spacing2,Spacing3,Sizes)
+function [Tx,Ty,Tz]=bspline_transform_3d(O_trans,Spacing1,Spacing2,Spacing3,Sizes)
 % Bspline transformation grid function
 % 
 % [Iout,Tx,Ty]=bspline_transform_2d_double(Ox,Oy,Iin,dx,dy,mode)
@@ -17,21 +17,11 @@ function [Tx,Ty]=bspline_transform_3d(O_trans,Spacing1,Spacing2,Spacing3,Sizes)
 %   Tx: The transformation field in x direction
 %   Ty: The transformation field in y direction
 %
-% This function is an implementation of the b-spline registration
-% algorithm in "D. Rueckert et al. : Nonrigid Registration Using Free-Form 
-% Deformations: Application to Breast MR Images".
-% 
-% We used "Fumihiko Ino et al. : a data distrubted parallel algortihm for 
-%  nonrigid image registration" for the correct formula's, because 
-% (most) other papers contain errors. 
-%
-% Function is written by D.Kroon University of Twente (June 2009)
-
 % Make all x,y indices
 [x,y,z]=ndgrid(0:Sizes(1)-1,0:Sizes(2)-1,0:Sizes(3)-1);
 
 % Calulate the transformation of all image coordinates by the b-spline grid
-[Tlocal]=bspline_trans_points(O_trans,[Spacing1 Spacing2 Spacing3],[x(:) y(:) z(:)],false);
+[Tlocal]=bspline_trans_points_B1(O_trans,[Spacing1 Spacing2 Spacing3],[x(:) y(:) z(:)],true);
 
 % switch(mode)
 % 	case 0

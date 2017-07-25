@@ -22,7 +22,7 @@ t_start = tic;
 % f_m=randi(10,10,10);
 % f_f=randi(10,10,10);
 [m,n,q]=size(f_m);
-% lamda=0.1;
+% lamda=0.1;ss
 % rho_0=5;
 mu=10;
 tao=1.3;
@@ -51,8 +51,9 @@ k = 0;
     
     f_m=imfilter(f_m,Hw,'conv');
     f_f=imfilter(f_f,Hw,'conv');    
-% M_pyr sovler
-for j=1:(M_pyr+M_ref ) %
+
+for j=1:(M_pyr+M_ref ) 
+%% M_pyr sovler
     if j<=M_pyr     %  金字塔创建 delta 大小
         
         % level_size=floor(dimen/2^(j-1));  % 返回各层维度对应大小...j从0开始,故是  原图..原图/2....
@@ -67,13 +68,11 @@ for j=1:(M_pyr+M_ref ) %
         f_mj=f_mj_old;
         f_fj=f_fj_old;
     end    
-    
-    
+%% ADMM solver in j-th level 
+   
     [m, n ,q] = size(f_mj);
     fprintf('---------------------------------------\n');   
     j
-
-    % ADMM solver in j-th level 
     km=length(0:Spacing(1):m-1);
     kn=length(0:Spacing(2):n-1);
     kq=length(0:Spacing(3):q-1);
@@ -91,8 +90,8 @@ for j=1:(M_pyr+M_ref ) %
     % z\u 是(L,N^2)'维
     for m_iter = 1:M_iter
         k_old=k;
-        % x-update use lbfgs
-        % LBFGS_k 输出是 (n*L,1)维
+        
+        % x-update use lbfgs, LBFGS_k 输出是 (n*L,1)维
         [k,f_value]=LBFGS_k(k_old,f_fj,f_mj,rho,Dissimilarity,Spacing,delta,z-u ,M_lbgfs);
         k_grid=reshape(k,km,kn,kq,3);
         
@@ -106,9 +105,9 @@ for j=1:(M_pyr+M_ref ) %
         % z-update with relaxation && use group lasso
         % update with k->D(k)
         z_old = z;
-        Dk=D(k_grid(:,:,1),k_grid(:,:,2));
+        Dk=D(k_grid(:,:,:,1),k_grid(:,:,:,2),k_grid(:,:,:,3));
         x_hat = alpha.*Dk + (1-alpha).*z_old;
-        z=update_z(lamda,eta, x_hat, u, rho,z_old);         
+        z=update_z(lamda,eta, x_hat, u, rho);         
         
         % u-update
         u = u + (x_hat - z);
@@ -116,7 +115,7 @@ for j=1:(M_pyr+M_ref ) %
         % diagnostics, reporting, termination checks        
         % varying penalty 
         history.r_norm(m_iter)=norm(Dk-z);
-        history.s_norm(m_iter)=norm(rho*D_conju(z-z_old,km,kn));
+        history.s_norm(m_iter)=norm(rho*D_conju(z-z_old,km,kn,kq));
         
         if history.r_norm(m_iter)>=mu*history.s_norm(m_iter)
             rho=rho*tao;
@@ -129,33 +128,28 @@ for j=1:(M_pyr+M_ref ) %
 
     end % end of M_iter
 
-    f_mj_old=f_mj;
-    f_fj_old=f_fj;
+        f_mj_old=f_mj;
+        f_fj_old=f_fj;
     
-%     上采样
-%     k_grid=reshape(k,km,kn,2);  % 上面迭代中有
+       % 上采样
        if j<M_pyr
         temp_size=floor(dimen/2^(M_pyr-j-1)); % 以3为例,原图大小/2....原图大小...
        else
-        temp_size=[m,n];
+        temp_size=[m,n,q];
        end
        if j==M_pyr % &&j<(M_pyr+M_ref)
         Spacing=Spacing./2;
        end
-%        if (j>=M_pyr)&&(j<M_ref)   
-          k_upr=length(0:Spacing(1):temp_size(1)-1);
-          k_upc=length(0:Spacing(2):temp_size(2)-1);
-%        else
-%           k_upr=length(0:Spacing(1):temp_size(1)-1);
-%           k_upc=length(0:Spacing(2):temp_size(2)-1); 
-%        end
+        k_upr=length(0:Spacing(1):temp_size(1)-1);
+        k_upc=length(0:Spacing(2):temp_size(2)-1);
+        k_upz=length(0:Spacing(3):temp_size(3)-1);
 
-        up_size=[k_upr,k_upc];
+        up_size=[k_upr,k_upc,k_upz];
         kr=imresize(k_grid(:,:,1),up_size,'bilinear');
         kc=imresize(k_grid(:,:,2),up_size,'bilinear');
-        
+        kz=imresize(k_grid(:,:,3),up_size,'bilinear');        
         k=0;
-        k=[kr(:);kc(:)]; % 变为2*num,1维
+        k=[kr(:);kc(:);kz(:)]; % 变为2*num,1维
 
     
     if ~QUIET
@@ -167,29 +161,16 @@ end % end of M_pyr
 end % end of function
 
 
-%% z-updata
+%% z-update
 
-%%
-% z-update
-function z_out = update_z(lamda,eta, x_hat, u, rho,z_old) 
-%     % cumulative partition
-%     cum_part = cumsum(p); % cum-part为非奇异维累加和...即由上到下(行方向)累加和
-%     start_ind = 1;
-%     for i = 1:length(p),
-%         sel = start_ind:cum_part(i);
-%         z_old(sel) = shrinkage(x_hat(sel) + u(sel), lamda*eta/rho);
-%         start_ind = cum_part(i) + 1;
-%     end
-%     z_out=z_old;
+function z_out = update_z(lamda,eta, x_hat, u, rho) 
  z_out = shrinkage(x_hat + u, lamda*eta/rho);
 end
 function z = shrinkage(a, kappa)
     z = max(0, a-kappa) - max(0, -a-kappa);
 end
-% function z = shrinkage(a, kappa)
-%     z = pos(1 - kappa/norm(a))*a;
-% end
-% the function D(d) used in TV-Regularization
+
+%% the function D(d) used in TV-Regularization
 function Dd = D(dr,dc,dz)  %3-D
       [dr_dc,dr_dr,dr_dz]=gradient(dr);
       [dc_dc,dc_dr,dc_dz]=gradient(dc);

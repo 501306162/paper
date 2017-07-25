@@ -5,12 +5,11 @@ function [ki_up, dki_up] =Ed_2d(k,ffo,fmo,rho,Dissimilarity,Spacing,delta,ZU_dif
 %     输入最好是一维列向量...输出也是一维列向量
 %   k    是   n*L行 1列...一共3维/
 %   Dk、u、z 是 n2列 L行
-
-    [m,n]=size(fmo);
-    [kx,ky]=ndgrid(0:Spacing(1):m-1,0:Spacing(2):n-1); % 网格坐标
-    [x,y]=ndgrid(0:m-1,0:n-1); % 像素坐标    
-    
     v=prod(delta);
+    [m,n]=size(fmo);   
+    [x,y]=ndgrid(0:m-1,0:n-1); % 像素坐标    
+    [kx,ky]=ndgrid(0:Spacing(1):m-1,0:Spacing(2):n-1); % 网格坐标
+
     k_m=size(kx,1);  
     k_n=size(kx,2);
     num_control=k_m*k_n;     
@@ -29,9 +28,9 @@ function [ki_up, dki_up] =Ed_2d(k,ffo,fmo,rho,Dissimilarity,Spacing,delta,ZU_dif
 % fprintf('---------------------------------------\n');   
     % 移动以后图像 ...
     f_m=movepixels_2d(fmo,dk(:,:,1),dk(:,:,2));
-    figure,
-    subplot(1,2,1), imshow(f_m); title('浮动图');
-    subplot(1,2,2), imshow(ffo); title('固定图');
+%     figure,
+%     subplot(1,2,1), imshow(f_m); title('浮动图');
+%     subplot(1,2,2), imshow(ffo); title('固定图');
     
     % 第一项操作  返回值与图像同维度..
     switch Dissimilarity        

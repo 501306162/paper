@@ -67,5 +67,13 @@ slice=repmat((neig_sub_begin(3):1:neig_sub_end(3)),1,row_size*col_size);        
 % the neighbors include the 'ind' pixel
 neighbors_ind=sub2ind(size(image),row(:),col(:),slice(:));
 % the neighbors exclude the 'ind' pixel
-neighbors_ind(neighbors_ind==ind)=[];
+% neighbors_ind(neighbors_ind==ind)=[];
+ddk_1=max((1-abs(row(:)-r)./K(1)),0);
+ddk_2=max((1-abs(col(:)-c)./K(2)),0);
+ddk_3=max((1-abs(slice(:)-s)./K(3)),0);
+
+
+% ddk=zeros(num_control,1);
+ddk=[neighbors_ind(:),ddk_1.*ddk_2.*ddk_3];
+
 end

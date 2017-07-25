@@ -31,7 +31,7 @@ function [Tx,Ty]=bspline_transform_2d(O_trans,Spacing1,Spacing2,Sizes)
 [x,y]=ndgrid(0:Sizes(1)-1,0:Sizes(2)-1);
 
 % Calulate the transformation of all image coordinates by the b-spline grid
-[Tlocal]=bspline_trans_points(O_trans,[Spacing1 Spacing2],[x(:) y(:)],false);
+[Tlocal]=bspline_trans_points_B1(O_trans,[Spacing1 Spacing2],[x(:) y(:)],true);
 
 % switch(mode)
 % 	case 0

@@ -4,41 +4,16 @@ j =
 
      1
 
-
-km =
-
-     4
-
-
-kn =
-
-     4
-
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-     8     8
-
-时间已过 6.055671 秒。
+时间已过 1.124210 秒。
 ---------------------------------------
 
 j =
 
      2
 
-
-km =
-
-     8
-
-
-kn =
-
-     8
-
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
@@ -46,1187 +21,43 @@ Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    16    16
-
-时间已过 26.023742 秒。
+时间已过 2.913008 秒。
 ---------------------------------------
 
 j =
 
      3
 
-
-km =
-
-    16
-
-
-kn =
-
-    16
-
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    32    32
-
-时间已过 34.487440 秒。
+时间已过 4.229365 秒。
 ---------------------------------------
 
 j =
 
      4
 
-
-km =
-
-    32
-
-
-kn =
-
-    32
-
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    64    64
-
-时间已过 40.591122 秒。
+时间已过 7.015855 秒。
 ---------------------------------------
 
 j =
 
      5
 
-
-km =
-
-    64
-
-
-kn =
-
-    64
-
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    64    64
-
-时间已过 109.657670 秒。
+时间已过 63.642478 秒。
 ---------------------------------------
 
 j =
 
      6
 
-
-km =
-
-   128
-
-
-kn =
-
-   128
-
-{错误使用 <a href="matlab:helpUtils.errorDocCallback('reshape')" style="font-weight:bold">reshape</a>
-要执行 RESHAPE，请勿更改元素数目。
-
-出错 <a href="matlab:helpUtils.errorDocCallback('isopTV_new_refine', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_new_refine.m', 82)" style="font-weight:bold">isopTV_new_refine</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_new_refine.m',82,0)">line 82</a>)
-    k_grid=reshape(k,km,kn,2);
-
-出错 <a href="matlab:helpUtils.errorDocCallback('isopTV_initial', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial.m', 97)" style="font-weight:bold">isopTV_initial</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial.m',97,0)">line 97</a>)
-[k] = isopTV_new_refine(f_mw,f_fw,lamda, rho_0, alpha);
-} 
-isopTV_initial
----------------------------------------
-
-j =
-
-     1
-
-
-km =
-
-     4
-
-
-kn =
-
-     4
-
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-     8     8
-
-时间已过 5.367761 秒。
----------------------------------------
-
-j =
-
-     2
-
-
-km =
-
-     8
-
-
-kn =
-
-     8
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    16    16
-
-时间已过 23.962921 秒。
----------------------------------------
-
-j =
-
-     3
-
-
-km =
-
-    16
-
-
-kn =
-
-    16
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    32    32
-
-时间已过 31.996593 秒。
----------------------------------------
-
-j =
-
-     4
-
-
-km =
-
-    32
-
-
-kn =
-
-    32
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    64    64
-
-时间已过 38.059891 秒。
----------------------------------------
-
-j =
-
-     5
-
-
-km =
-
-    64
-
-
-kn =
-
-    64
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    64    64
-
-时间已过 106.998102 秒。
----------------------------------------
-
-j =
-
-     6
-
-
-km =
-
-   128
-
-
-kn =
-
-   128
-
-{错误使用 <a href="matlab:helpUtils.errorDocCallback('reshape')" style="font-weight:bold">reshape</a>
-要执行 RESHAPE，请勿更改元素数目。
-
-出错 <a href="matlab:helpUtils.errorDocCallback('isopTV_new_refine', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_new_refine.m', 82)" style="font-weight:bold">isopTV_new_refine</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_new_refine.m',82,0)">line 82</a>)
-    k_grid=reshape(k,km,kn,2);
-
-出错 <a href="matlab:helpUtils.errorDocCallback('isopTV_initial', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial.m', 97)" style="font-weight:bold">isopTV_initial</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial.m',97,0)">line 97</a>)
-[k] = isopTV_new_refine(f_mw,f_fw,lamda, rho_0, alpha);
-} 
-isopTV_initial
-
-m =
-
-    16
-
-
-n =
-
-    16
-
----------------------------------------
-
-j =
-
-     1
-
-
-km =
-
-     4
-
-
-kn =
-
-     4
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-temp_size =
-
-    32    32
-
-
-up_size =
-
-     8     8
-
-时间已过 0.277054 秒。
-
-m =
-
-    32
-
-
-n =
-
-    32
-
----------------------------------------
-
-j =
-
-     2
-
-
-km =
-
-     8
-
-
-kn =
-
-     8
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-temp_size =
-
-    64    64
-
-
-up_size =
-
-    16    16
-
-时间已过 0.917487 秒。
-
-m =
-
-    64
-
-
-n =
-
-    64
-
----------------------------------------
-
-j =
-
-     3
-
-
-km =
-
-    16
-
-
-kn =
-
-    16
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-temp_size =
-
-   128   128
-
-
-up_size =
-
-    32    32
-
-时间已过 1.912699 秒。
-
-m =
-
-   128
-
-
-n =
-
-   128
-
----------------------------------------
-
-j =
-
-     4
-
-
-km =
-
-    32
-
-
-kn =
-
-    32
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-temp_size =
-
-   256   256
-
-
-up_size =
-
-    64    64
-
-时间已过 4.908243 秒。
-
-m =
-
-   256
-
-
-n =
-
-   256
-
----------------------------------------
-
-j =
-
-     5
-
-
-km =
-
-    64
-
-
-kn =
-
-    64
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-temp_size =
-
-   256   256
-
-
-up_size =
-
-    64    64
-
-时间已过 67.669157 秒。
-
-m =
-
-   256
-
-
-n =
-
-   256
-
----------------------------------------
-
-j =
-
-     6
-
-
-km =
-
-   128
-
-
-kn =
-
-   128
-
-{错误使用 <a href="matlab:helpUtils.errorDocCallback('reshape')" style="font-weight:bold">reshape</a>
-要执行 RESHAPE，请勿更改元素数目。
-
-出错 <a href="matlab:helpUtils.errorDocCallback('isopTV_new_refine', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_new_refine.m', 82)" style="font-weight:bold">isopTV_new_refine</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_new_refine.m',82,0)">line 82</a>)
-    k_grid=reshape(k,km,kn,2);
-
-出错 <a href="matlab:helpUtils.errorDocCallback('isopTV_initial', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial.m', 97)" style="font-weight:bold">isopTV_initial</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial.m',97,0)">line 97</a>)
-[k] = isopTV_new_refine(f_mw,f_fw,lamda, rho_0, alpha);
-} 
-isopTV_initial
----------------------------------------
-
-j =
-
-     1
-
-
-km =
-
-     4
-
-
-kn =
-
-     4
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-     8     8
-
-时间已过 0.275704 秒。
----------------------------------------
-
-j =
-
-     2
-
-
-km =
-
-     8
-
-
-kn =
-
-     8
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    16    16
-
-时间已过 0.987316 秒。
----------------------------------------
-
-j =
-
-     3
-
-
-km =
-
-    16
-
-
-kn =
-
-    16
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    32    32
-
-时间已过 1.978881 秒。
----------------------------------------
-
-j =
-
-     4
-
-
-km =
-
-    32
-
-
-kn =
-
-    32
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    64    64
-
-时间已过 4.860283 秒。
----------------------------------------
-
-j =
-
-     5
-
-
-km =
-
-    64
-
-
-kn =
-
-    64
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    64    64
-
-时间已过 67.071369 秒。
----------------------------------------
-
-j =
-
-     6
-
-
-km =
-
-   128
-
-
-kn =
-
-   128
-
-{错误使用 <a href="matlab:helpUtils.errorDocCallback('reshape')" style="font-weight:bold">reshape</a>
-要执行 RESHAPE，请勿更改元素数目。
-
-出错 <a href="matlab:helpUtils.errorDocCallback('isopTV_new_refine', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_new_refine.m', 82)" style="font-weight:bold">isopTV_new_refine</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_new_refine.m',82,0)">line 82</a>)
-    k_grid=reshape(k,km,kn,2);
-
-出错 <a href="matlab:helpUtils.errorDocCallback('isopTV_initial', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial.m', 97)" style="font-weight:bold">isopTV_initial</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial.m',97,0)">line 97</a>)
-[k] = isopTV_new_refine(f_mw,f_fw,lamda, rho_0, alpha);
-} 
-isopTV_initial
----------------------------------------
-
-j =
-
-     1
-
-
-km =
-
-     4
-
-
-kn =
-
-     4
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-     8     8
-
-时间已过 0.277760 秒。
----------------------------------------
-
-j =
-
-     2
-
-
-km =
-
-     8
-
-
-kn =
-
-     8
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    16    16
-
-时间已过 0.912816 秒。
----------------------------------------
-
-j =
-
-     3
-
-
-km =
-
-    16
-
-
-kn =
-
-    16
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    32    32
-
-时间已过 1.931020 秒。
----------------------------------------
-
-j =
-
-     4
-
-
-km =
-
-    32
-
-
-kn =
-
-    32
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    64    64
-
-时间已过 4.884595 秒。
----------------------------------------
-
-j =
-
-     5
-
-
-km =
-
-    64
-
-
-kn =
-
-    64
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    64    64
-
-时间已过 67.299062 秒。
----------------------------------------
-
-j =
-
-     6
-
-
-km =
-
-    64
-
-
-kn =
-
-    64
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    64    64
-
-时间已过 129.548503 秒。
----------------------------------------
-
-j =
-
-     7
-
-
-km =
-
-    64
-
-
-kn =
-
-    64
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    64    64
-
-时间已过 190.925907 秒。
----------------------------------------
-
-j =
-
-     1
-
-
-km =
-
-     4
-
-
-kn =
-
-     4
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-     8     8
-
-时间已过 0.274638 秒。
----------------------------------------
-
-j =
-
-     2
-
-
-km =
-
-     8
-
-
-kn =
-
-     8
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    16    16
-
-时间已过 0.945769 秒。
----------------------------------------
-
-j =
-
-     3
-
-
-km =
-
-    16
-
-
-kn =
-
-    16
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    32    32
-
-时间已过 1.939500 秒。
----------------------------------------
-
-j =
-
-     4
-
-
-km =
-
-    32
-
-
-kn =
-
-    32
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    64    64
-
-时间已过 4.825997 秒。
----------------------------------------
-
-j =
-
-     5
-
-
-km =
-
-    64
-
-
-kn =
-
-    64
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-   128   128
-
-时间已过 67.106886 秒。
----------------------------------------
-
-j =
-
-     6
-
-
-km =
-
-   128
-
-
-kn =
-
-   128
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-   256   256
-
-时间已过 165.793270 秒。
----------------------------------------
-
-j =
-
-     7
-
-
-km =
-
-   256
-
-
-kn =
-
-   256
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-   511   511
-
-时间已过 531.735911 秒。
----------------------------------------
-
-j =
-
-     1
-
-
-km =
-
-     4
-
-
-kn =
-
-     4
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-     8     8
-
-时间已过 0.274223 秒。
----------------------------------------
-
-j =
-
-     2
-
-
-km =
-
-     8
-
-
-kn =
-
-     8
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    16    16
-
-时间已过 0.906546 秒。
----------------------------------------
-
-j =
-
-     3
-
-
-km =
-
-    16
-
-
-kn =
-
-    16
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    32    32
-
-时间已过 1.898083 秒。
----------------------------------------
-
-j =
-
-     4
-
-
-km =
-
-    32
-
-
-kn =
-
-    32
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-    64    64
-
-时间已过 4.814578 秒。
----------------------------------------
-
-j =
-
-     5
-
-
-km =
-
-    64
-
-
-kn =
-
-    64
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-   128   128
-
-时间已过 66.992705 秒。
----------------------------------------
-
-j =
-
-     6
-
-
-km =
-
-   128
-
-
-kn =
-
-   128
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-   256   256
-
-时间已过 165.856636 秒。
----------------------------------------
-
-j =
-
-     7
-
-
-km =
-
-   256
-
-
-kn =
-
-   256
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-
-up_size =
-
-   256   256
-
-时间已过 532.121371 秒。
+时间已过 122.809980 秒。
 ---------------------------------------
 
 j =
@@ -1236,7 +67,7 @@ j =
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 5.880990 秒。
+时间已过 0.853883 秒。
 ---------------------------------------
 
 j =
@@ -1251,7 +82,12 @@ Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 26.654706 秒。
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 4.545576 秒。
 ---------------------------------------
 
 j =
@@ -1261,7 +97,7 @@ j =
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 35.645926 秒。
+时间已过 6.723209 秒。
 ---------------------------------------
 
 j =
@@ -1270,7 +106,7 @@ j =
 
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 41.904109 秒。
+时间已过 10.525147 秒。
 ---------------------------------------
 
 j =
@@ -1279,7 +115,7 @@ j =
 
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 113.886477 秒。
+时间已过 34.537158 秒。
 ---------------------------------------
 
 j =
@@ -1288,12 +124,7 @@ j =
 
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 220.035189 秒。
-
-delta =
-
-    16    16
-
+时间已过 134.913377 秒。
 ---------------------------------------
 
 j =
@@ -1303,12 +134,7 @@ j =
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 0.291280 秒。
-
-delta =
-
-     8     8
-
+时间已过 0.838452 秒。
 ---------------------------------------
 
 j =
@@ -1322,12 +148,8 @@ Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 1.187596 秒。
-
-delta =
-
-     4     4
-
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 3.283550 秒。
 ---------------------------------------
 
 j =
@@ -1338,12 +160,7 @@ Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 2.772902 秒。
-
-delta =
-
-     2     2
-
+时间已过 5.575179 秒。
 ---------------------------------------
 
 j =
@@ -1352,12 +169,7 @@ j =
 
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 5.950636 秒。
-
-delta =
-
-     1     1
-
+时间已过 8.677325 秒。
 ---------------------------------------
 
 j =
@@ -1366,7 +178,7 @@ j =
 
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 32.241102 秒。
+时间已过 36.317366 秒。
 ---------------------------------------
 
 j =
@@ -1375,7 +187,7 @@ j =
 
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 129.249721 秒。
+时间已过 129.120347 秒。
 ---------------------------------------
 
 j =
@@ -1385,7 +197,7 @@ j =
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 7.548343 秒。
+时间已过 0.814282 秒。
 ---------------------------------------
 
 j =
@@ -1398,7 +210,10 @@ Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 27.335187 秒。
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 3.532778 秒。
 ---------------------------------------
 
 j =
@@ -1408,7 +223,8 @@ j =
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 33.852420 秒。
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 5.715271 秒。
 ---------------------------------------
 
 j =
@@ -1417,7 +233,7 @@ j =
 
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 39.200383 秒。
+时间已过 8.968624 秒。
 ---------------------------------------
 
 j =
@@ -1426,7 +242,7 @@ j =
 
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 102.337766 秒。
+时间已过 32.856182 秒。
 ---------------------------------------
 
 j =
@@ -1434,108 +250,31 @@ j =
      6
 
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 165.489498 秒。
----------------------------------------
-
-j =
-
-     1
-
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 3.546091 秒。
----------------------------------------
-
-j =
-
-     2
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 9.453448 秒。
----------------------------------------
-
-j =
-
-     3
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Step direction is illegal!
-时间已过 29.538870 秒。
----------------------------------------
-
-j =
-
-     4
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Step direction is illegal!
-时间已过 39.904294 秒。
----------------------------------------
-
-j =
-
-     5
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Step direction is illegal!
-{操作在以下过程中被用户终止 <a href="matlab:helpUtils.errorDocCallback('minFunc', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\minFunc\minFunc.m', 289)" style="font-weight:bold">minFunc</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\minFunc\minFunc.m',289,0)">line 289</a>)
+{操作在以下过程中被用户终止 <a href="matlab:helpUtils.errorDocCallback('Ed_2d', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\Ed_2d.m', 59)" style="font-weight:bold">Ed_2d</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\Ed_2d.m',59,0)">line 59</a>)
 
 
-位置 <a href="matlab:helpUtils.errorDocCallback('LBFGS_k', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\LBFGS_k.m', 18)" style="font-weight:bold">LBFGS_k</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\LBFGS_k.m',18,0)">line 18</a>)
-[k,f] =
-minFunc(@Ed_2d,k0,options,ffo,fmo,rho,Dissimilarity,Spacing,delta,ZU_diff);
+位置 <a href="matlab:helpUtils.errorDocCallback('WolfeLineSearch', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\minFunc\WolfeLineSearch.m', 122)" style="font-weight:bold">WolfeLineSearch</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\minFunc\WolfeLineSearch.m',122,0)">line 122</a>)
+        [f_new,g_new] = funObj(x +
+        t*d,varargin{:});
 
-位置 <a href="matlab:helpUtils.errorDocCallback('isopTV_new_refine', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_new_refine.m', 95)" style="font-weight:bold">isopTV_new_refine</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_new_refine.m',95,0)">line 95</a>)
+位置 <a href="matlab:helpUtils.errorDocCallback('minFunc', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\minFunc\minFunc.m', 401)" style="font-weight:bold">minFunc</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\minFunc\minFunc.m',401,0)">line 401</a>)
+           [t,f,g,LSfunEvals] =
+           WolfeLineSearch(x,t,d,f,g,gtd,c1,c2,LS_interp,LS_multi,25,progTol,debug,doPlot,1,funObj,varargin{:});
+           
+位置 <a href="matlab:helpUtils.errorDocCallback('LBFGS_k', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\LBFGS_k.m', 15)" style="font-weight:bold">LBFGS_k</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\LBFGS_k.m',15,0)">line 15</a>)
+    [k,f] =
+    minFunc(@Ed_2d,k0,options,ffo,fmo,rho,Dissimilarity,Spacing,delta,ZU_diff);
+    
+位置 <a href="matlab:helpUtils.errorDocCallback('isopTV_2d', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_2d.m', 95)" style="font-weight:bold">isopTV_2d</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_2d.m',95,0)">line 95</a>)
         [k,f_value]=LBFGS_k(k_old,f_fj,f_mj,rho,Dissimilarity,Spacing,delta,z-u
         ,M_lbgfs);
 
-位置 <a href="matlab:helpUtils.errorDocCallback('isopTV_initial', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial.m', 97)" style="font-weight:bold">isopTV_initial</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial.m',97,0)">line 97</a>)
-[k] =
-isopTV_new_refine(f_mw,f_fw,lamda,
-rho_0, alpha);
+位置 <a href="matlab:helpUtils.errorDocCallback('isopTV_initial_2d', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial_2d.m', 26)" style="font-weight:bold">isopTV_initial_2d</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial_2d.m',26,0)">line 26</a>)
+[k] = isopTV_2d(f_mw,f_fw,lamda, rho_0,
+alpha);
 } 
-isopTV_initial
----------------------------------------
-
-j =
-
-     1
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 3.707540 秒。
----------------------------------------
-
-j =
-
-     2
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 9.516602 秒。
----------------------------------------
-
-j =
-
-     3
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Step direction is illegal!
-{操作在以下过程中被用户终止 <a href="matlab:helpUtils.errorDocCallback('minFunc', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\minFunc\minFunc.m', 289)" style="font-weight:bold">minFunc</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\minFunc\minFunc.m',289,0)">line 289</a>)
-
-
-位置 <a href="matlab:helpUtils.errorDocCallback('LBFGS_k', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\LBFGS_k.m', 18)" style="font-weight:bold">LBFGS_k</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\LBFGS_k.m',18,0)">line 18</a>)
-[k,f] =
-minFunc(@Ed_2d,k0,options,ffo,fmo,rho,Dissimilarity,Spacing,delta,ZU_diff);
-
-位置 <a href="matlab:helpUtils.errorDocCallback('isopTV_new_refine', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_new_refine.m', 95)" style="font-weight:bold">isopTV_new_refine</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_new_refine.m',95,0)">line 95</a>)
-        [k,f_value]=LBFGS_k(k_old,f_fj,f_mj,rho,Dissimilarity,Spacing,delta,z-u
-        ,M_lbgfs);
-
-位置 <a href="matlab:helpUtils.errorDocCallback('isopTV_initial', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial.m', 97)" style="font-weight:bold">isopTV_initial</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial.m',97,0)">line 97</a>)
-[k] = isopTV_new_refine(f_mw,f_fw,lamda,
-rho_0, alpha);
-} 
-isopTV_initial
+isopTV_initial_2d
 ---------------------------------------
 
 j =
@@ -1545,7 +284,7 @@ j =
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 6.968102 秒。
+时间已过 0.843446 秒。
 ---------------------------------------
 
 j =
@@ -1563,7 +302,18 @@ Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 64.393798 秒。
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 7.182014 秒。
 ---------------------------------------
 
 j =
@@ -1573,7 +323,8 @@ j =
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 82.445389 秒。
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 9.629269 秒。
 ---------------------------------------
 
 j =
@@ -1582,7 +333,7 @@ j =
 
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 89.753346 秒。
+时间已过 13.122277 秒。
 ---------------------------------------
 
 j =
@@ -1591,7 +342,7 @@ j =
 
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 116.833810 秒。
+时间已过 40.602904 秒。
 ---------------------------------------
 
 j =
@@ -1599,100 +350,19 @@ j =
      6
 
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-{操作在以下过程中被用户终止 <a href="matlab:helpUtils.errorDocCallback('ind2sub', 'D:\matlab\toolbox\matlab\elmat\ind2sub.m', 25)" style="font-weight:bold">ind2sub</a> (<a href="matlab: opentoline('D:\matlab\toolbox\matlab\elmat\ind2sub.m',25,0)">line 25</a>)
+{操作在以下过程中被用户终止
+<a href="matlab:helpUtils.errorDocCallback('neighborhood_trans>neighborhood2d', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\neighborhood_trans.m', 28)" style="font-weight:bold">neighborhood_trans>neighborhood2d</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\neighborhood_trans.m',28,0)">line
+28</a>)
 
-
-位置 <a href="matlab:helpUtils.errorDocCallback('neighborhood_trans>neighborhood2d', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\neighborhood_trans.m', 17)" style="font-weight:bold">neighborhood_trans>neighborhood2d</a>
-(<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\neighborhood_trans.m',17,0)">line 17</a>)
-[r,c]=ind2sub(sizes,ind);
 
 位置 <a href="matlab:helpUtils.errorDocCallback('neighborhood_trans', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\neighborhood_trans.m', 6)" style="font-weight:bold">neighborhood_trans</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\neighborhood_trans.m',6,0)">line 6</a>)
        ddk=
        neighborhood2d(ind,sizes,K);
 
-位置 <a href="matlab:helpUtils.errorDocCallback('Ed_2d', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\Ed_2d.m', 60)" style="font-weight:bold">Ed_2d</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\Ed_2d.m',60,0)">line 60</a>)
+位置 <a href="matlab:helpUtils.errorDocCallback('Ed_2d', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\Ed_2d.m', 59)" style="font-weight:bold">Ed_2d</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\Ed_2d.m',59,0)">line 59</a>)
         ddk=neighborhood_trans(k_p,[m
         n],Spacing);
 
-位置 <a href="matlab:helpUtils.errorDocCallback('minFunc', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\minFunc\minFunc.m', 141)" style="font-weight:bold">minFunc</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\minFunc\minFunc.m',141,0)">line 141</a>)
-    [f,g] = funObj(x,varargin{:});  %
-    调用rosenblock函数...以x为输入...输出[f,df]
-
-位置 <a href="matlab:helpUtils.errorDocCallback('LBFGS_k', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\LBFGS_k.m', 18)" style="font-weight:bold">LBFGS_k</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\LBFGS_k.m',18,0)">line 18</a>)
-[k,f] =
-minFunc(@Ed_2d,k0,options,ffo,fmo,rho,Dissimilarity,Spacing,delta,ZU_diff);
-
-位置 <a href="matlab:helpUtils.errorDocCallback('isopTV_new_refine', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_new_refine.m', 95)" style="font-weight:bold">isopTV_new_refine</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_new_refine.m',95,0)">line 95</a>)
-        [k,f_value]=LBFGS_k(k_old,f_fj,f_mj,rho,Dissimilarity,Spacing,delta,z-u
-        ,M_lbgfs);
-
-位置 <a href="matlab:helpUtils.errorDocCallback('isopTV_initial', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial.m', 97)" style="font-weight:bold">isopTV_initial</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial.m',97,0)">line 97</a>)
-[k] =
-isopTV_new_refine(f_mw,f_fw,lamda,
-rho_0, alpha);
-} 
-isopTV_initial
----------------------------------------
-
-j =
-
-     1
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 7.819228 秒。
----------------------------------------
-
-j =
-
-     2
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 32.567704 秒。
----------------------------------------
-
-j =
-
-     3
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 39.500395 秒。
----------------------------------------
-
-j =
-
-     4
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 44.814742 秒。
----------------------------------------
-
-j =
-
-     5
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 105.885425 秒。
----------------------------------------
-
-j =
-
-     6
-
-Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-{操作在以下过程中被用户终止 <a href="matlab:helpUtils.errorDocCallback('Ed_2d', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\Ed_2d.m', 60)" style="font-weight:bold">Ed_2d</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\Ed_2d.m',60,0)">line 60</a>)
-
-
 位置 <a href="matlab:helpUtils.errorDocCallback('WolfeLineSearch', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\minFunc\WolfeLineSearch.m', 122)" style="font-weight:bold">WolfeLineSearch</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\minFunc\WolfeLineSearch.m',122,0)">line 122</a>)
         [f_new,g_new] = funObj(x +
         t*d,varargin{:});
@@ -1701,20 +371,48 @@ Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
            [t,f,g,LSfunEvals] =
            WolfeLineSearch(x,t,d,f,g,gtd,c1,c2,LS_interp,LS_multi,25,progTol,debug,doPlot,1,funObj,varargin{:});
            
-位置 <a href="matlab:helpUtils.errorDocCallback('LBFGS_k', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\LBFGS_k.m', 18)" style="font-weight:bold">LBFGS_k</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\LBFGS_k.m',18,0)">line 18</a>)
-[k,f] =
-minFunc(@Ed_2d,k0,options,ffo,fmo,rho,Dissimilarity,Spacing,delta,ZU_diff);
-
-位置 <a href="matlab:helpUtils.errorDocCallback('isopTV_new_refine', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_new_refine.m', 95)" style="font-weight:bold">isopTV_new_refine</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_new_refine.m',95,0)">line 95</a>)
+位置 <a href="matlab:helpUtils.errorDocCallback('LBFGS_k', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\LBFGS_k.m', 15)" style="font-weight:bold">LBFGS_k</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\LBFGS_k.m',15,0)">line 15</a>)
+    [k,f] =
+    minFunc(@Ed_2d,k0,options,ffo,fmo,rho,Dissimilarity,Spacing,delta,ZU_diff);
+    
+位置 <a href="matlab:helpUtils.errorDocCallback('isopTV_2d', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_2d.m', 95)" style="font-weight:bold">isopTV_2d</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_2d.m',95,0)">line 95</a>)
         [k,f_value]=LBFGS_k(k_old,f_fj,f_mj,rho,Dissimilarity,Spacing,delta,z-u
         ,M_lbgfs);
 
-位置 <a href="matlab:helpUtils.errorDocCallback('isopTV_initial', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial.m', 97)" style="font-weight:bold">isopTV_initial</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial.m',97,0)">line 97</a>)
-[k] =
-isopTV_new_refine(f_mw,f_fw,lamda,
-rho_0, alpha);
+位置 <a href="matlab:helpUtils.errorDocCallback('isopTV_initial_2d', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial_2d.m', 26)" style="font-weight:bold">isopTV_initial_2d</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial_2d.m',26,0)">line 26</a>)
+[k] = isopTV_2d(f_mw,f_fw,lamda, rho_0,
+alpha);
 } 
-isopTV_initial
+isopTV_initial_2d
+
+a =
+
+     0
+
+{错误使用 <a href="matlab:helpUtils.errorDocCallback('fspecial')" style="font-weight:bold">fspecial</a>
+需要的 输入数目 2, N, 应为 正值。
+
+出错 <a href="matlab:helpUtils.errorDocCallback('fspecial>ParseInputs', 'D:\matlab\toolbox\images\images\fspecial.m', 342)" style="font-weight:bold">fspecial>ParseInputs</a> (<a href="matlab: opentoline('D:\matlab\toolbox\images\images\fspecial.m',342,0)">line 342</a>)
+              validateattributes(p2,{'double'},...
+              
+出错 <a href="matlab:helpUtils.errorDocCallback('fspecial', 'D:\matlab\toolbox\images\images\fspecial.m', 99)" style="font-weight:bold">fspecial</a> (<a href="matlab: opentoline('D:\matlab\toolbox\images\images\fspecial.m',99,0)">line 99</a>)
+[type, p2, p3] =
+ParseInputs(varargin{:});
+
+出错 <a href="matlab:helpUtils.errorDocCallback('isopTV_2d', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_2d.m', 50)" style="font-weight:bold">isopTV_2d</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_2d.m',50,0)">line 50</a>)
+    Hw=fspecial('gaussian',[6*a
+    6*a],a);
+
+出错 <a href="matlab:helpUtils.errorDocCallback('isopTV_initial_2d', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial_2d.m', 26)" style="font-weight:bold">isopTV_initial_2d</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial_2d.m',26,0)">line 26</a>)
+[k] = isopTV_2d(f_mw,f_fw,lamda, rho_0,
+alpha);
+} 
+isopTV_initial_2d
+
+a =
+
+     0
+
 ---------------------------------------
 
 j =
@@ -1724,7 +422,7 @@ j =
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 7.221497 秒。
+时间已过 0.817358 秒。
 ---------------------------------------
 
 j =
@@ -1737,7 +435,8 @@ Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 32.858847 秒。
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 2.933184 秒。
 ---------------------------------------
 
 j =
@@ -1747,7 +446,8 @@ j =
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 40.270303 秒。
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 5.171395 秒。
 ---------------------------------------
 
 j =
@@ -1756,7 +456,7 @@ j =
 
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 49.221483 秒。
+时间已过 8.578695 秒。
 ---------------------------------------
 
 j =
@@ -1765,7 +465,7 @@ j =
 
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 93.050001 秒。
+时间已过 32.567543 秒。
 ---------------------------------------
 
 j =
@@ -1773,7 +473,13 @@ j =
      6
 
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 156.143302 秒。
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 124.569741 秒。
+
+a =
+
+    0.5000
+
 ---------------------------------------
 
 j =
@@ -1783,7 +489,7 @@ j =
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 7.946383 秒。
+时间已过 0.836697 秒。
 ---------------------------------------
 
 j =
@@ -1796,7 +502,9 @@ Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 34.470438 秒。
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 3.209060 秒。
 ---------------------------------------
 
 j =
@@ -1806,7 +514,8 @@ j =
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 41.799740 秒。
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 5.468520 秒。
 ---------------------------------------
 
 j =
@@ -1815,7 +524,7 @@ j =
 
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 50.595607 秒。
+时间已过 8.544217 秒。
 ---------------------------------------
 
 j =
@@ -1824,7 +533,7 @@ j =
 
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-时间已过 94.639730 秒。
+时间已过 35.974835 秒。
 ---------------------------------------
 
 j =
@@ -1832,68 +541,952 @@ j =
      6
 
 Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
-{操作在以下过程中被用户终止 <a href="matlab:helpUtils.errorDocCallback('Ed_2d', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\Ed_2d.m', 60)" style="font-weight:bold">Ed_2d</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\Ed_2d.m',60,0)">line 60</a>)
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 127.522113 秒。
 
+a =
 
-位置 <a href="matlab:helpUtils.errorDocCallback('WolfeLineSearch', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\minFunc\WolfeLineSearch.m', 122)" style="font-weight:bold">WolfeLineSearch</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\minFunc\WolfeLineSearch.m',122,0)">line 122</a>)
-        [f_new,g_new] = funObj(x +
-        t*d,varargin{:});
+    0.5000
 
-位置 <a href="matlab:helpUtils.errorDocCallback('minFunc', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\minFunc\minFunc.m', 401)" style="font-weight:bold">minFunc</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\minFunc\minFunc.m',401,0)">line 401</a>)
-           [t,f,g,LSfunEvals] =
-           WolfeLineSearch(x,t,d,f,g,gtd,c1,c2,LS_interp,LS_multi,25,progTol,debug,doPlot,1,funObj,varargin{:});
-           
-位置 <a href="matlab:helpUtils.errorDocCallback('LBFGS_k', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\LBFGS_k.m', 18)" style="font-weight:bold">LBFGS_k</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\LBFGS_k.m',18,0)">line 18</a>)
-[k,f] =
-minFunc(@Ed_2d,k0,options,ffo,fmo,rho,Dissimilarity,Spacing,delta,ZU_diff);
+---------------------------------------
 
-位置 <a href="matlab:helpUtils.errorDocCallback('isopTV_new_refine', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_new_refine.m', 95)" style="font-weight:bold">isopTV_new_refine</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_new_refine.m',95,0)">line 95</a>)
-        [k,f_value]=LBFGS_k(k_old,f_fj,f_mj,rho,Dissimilarity,Spacing,delta,z-u
-        ,M_lbgfs);
+j =
 
-位置 <a href="matlab:helpUtils.errorDocCallback('isopTV_initial', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial.m', 97)" style="font-weight:bold">isopTV_initial</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial.m',97,0)">line 97</a>)
-[k] =
-isopTV_new_refine(f_mw,f_fw,lamda,
-rho_0, alpha);
-} 
-m=3
+     1
 
-m =
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 0.848825 秒。
+---------------------------------------
+
+j =
+
+     2
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 3.216245 秒。
+---------------------------------------
+
+j =
 
      3
 
-0:2:m-1
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 5.477364 秒。
+---------------------------------------
 
-ans =
+j =
 
-     0     2
+     4
 
-m=10
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 8.576392 秒。
+---------------------------------------
 
-m =
+j =
+
+     5
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 35.910115 秒。
+---------------------------------------
+
+j =
+
+     6
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 127.498401 秒。
+
+a =
+
+    0.5000
+
+---------------------------------------
+
+j =
+
+     1
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 0.831556 秒。
+---------------------------------------
+
+j =
+
+     2
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 3.223546 秒。
+---------------------------------------
+
+j =
+
+     3
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 5.477223 秒。
+---------------------------------------
+
+j =
+
+     4
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 8.575395 秒。
+---------------------------------------
+
+j =
+
+     5
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 36.033521 秒。
+---------------------------------------
+
+j =
+
+     6
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 128.072960 秒。
+
+a =
+
+     1
+
+---------------------------------------
+
+j =
+
+     1
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 0.828365 秒。
+---------------------------------------
+
+j =
+
+     2
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 7.196819 秒。
+---------------------------------------
+
+j =
+
+     3
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 9.619759 秒。
+---------------------------------------
+
+j =
+
+     4
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 13.163590 秒。
+---------------------------------------
+
+j =
+
+     5
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 40.631241 秒。
+---------------------------------------
+
+j =
+
+     6
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 270.198512 秒。
+
+a =
+
+     2
+
+---------------------------------------
+
+j =
+
+     1
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 0.909029 秒。
+---------------------------------------
+
+j =
+
+     2
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 4.203315 秒。
+---------------------------------------
+
+j =
+
+     3
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 5.572756 秒。
+---------------------------------------
+
+j =
+
+     4
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 8.583491 秒。
+---------------------------------------
+
+j =
+
+     5
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 34.561150 秒。
+---------------------------------------
+
+j =
+
+     6
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 93.943777 秒。
+
+a =
+
+     3
+
+---------------------------------------
+
+j =
+
+     1
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 0.967137 秒。
+---------------------------------------
+
+j =
+
+     2
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 2.953333 秒。
+---------------------------------------
+
+j =
+
+     3
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 4.290738 秒。
+---------------------------------------
+
+j =
+
+     4
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 7.096233 秒。
+---------------------------------------
+
+j =
+
+     5
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 48.310078 秒。
+---------------------------------------
+
+j =
+
+     6
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 114.423864 秒。
+
+a =
+
+     4
+
+---------------------------------------
+
+j =
+
+     1
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 1.013386 秒。
+---------------------------------------
+
+j =
+
+     2
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 2.581014 秒。
+---------------------------------------
+
+j =
+
+     3
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 3.970081 秒。
+---------------------------------------
+
+j =
+
+     4
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 10.128331 秒。
+---------------------------------------
+
+j =
+
+     5
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 66.401127 秒。
+---------------------------------------
+
+j =
+
+     6
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 146.205144 秒。
+
+a =
+
+     5
+
+---------------------------------------
+
+j =
+
+     1
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 0.891778 秒。
+---------------------------------------
+
+j =
+
+     2
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 2.775671 秒。
+---------------------------------------
+
+j =
+
+     3
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 3.691017 秒。
+---------------------------------------
+
+j =
+
+     4
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 9.880369 秒。
+---------------------------------------
+
+j =
+
+     5
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 71.437018 秒。
+---------------------------------------
+
+j =
+
+     6
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 144.262644 秒。
+
+a =
+
+     6
+
+---------------------------------------
+
+j =
+
+     1
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 0.960394 秒。
+---------------------------------------
+
+j =
+
+     2
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 2.812874 秒。
+---------------------------------------
+
+j =
+
+     3
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 3.741275 秒。
+---------------------------------------
+
+j =
+
+     4
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 7.111292 秒。
+---------------------------------------
+
+j =
+
+     5
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 70.293724 秒。
+---------------------------------------
+
+j =
+
+     6
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 136.399574 秒。
+
+a =
+
+     7
+
+---------------------------------------
+
+j =
+
+     1
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 0.958380 秒。
+---------------------------------------
+
+j =
+
+     2
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 1.826486 秒。
+---------------------------------------
+
+j =
+
+     3
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 2.736377 秒。
+---------------------------------------
+
+j =
+
+     4
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 6.080366 秒。
+---------------------------------------
+
+j =
+
+     5
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 69.452456 秒。
+---------------------------------------
+
+j =
+
+     6
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 135.708192 秒。
+
+a =
+
+     8
+
+---------------------------------------
+
+j =
+
+     1
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 0.876292 秒。
+---------------------------------------
+
+j =
+
+     2
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 2.068040 秒。
+---------------------------------------
+
+j =
+
+     3
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 3.226621 秒。
+---------------------------------------
+
+j =
+
+     4
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 6.532594 秒。
+---------------------------------------
+
+j =
+
+     5
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 71.161060 秒。
+---------------------------------------
+
+j =
+
+     6
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 130.919907 秒。
+
+a =
+
+     9
+
+---------------------------------------
+
+j =
+
+     1
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 1.007947 秒。
+---------------------------------------
+
+j =
+
+     2
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 2.359971 秒。
+---------------------------------------
+
+j =
+
+     3
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 3.967493 秒。
+---------------------------------------
+
+j =
+
+     4
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 6.767953 秒。
+---------------------------------------
+
+j =
+
+     5
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 39.564830 秒。
+---------------------------------------
+
+j =
+
+     6
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 99.111422 秒。
+
+a =
 
     10
 
-0:2:m-1
+---------------------------------------
 
-ans =
+j =
 
-     0     2     4     6     8
+     1
 
-[m,l]=ndgrid(0:3,0:3)
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 0.736468 秒。
+---------------------------------------
 
-m =
+j =
 
-     0     0     0     0
-     1     1     1     1
-     2     2     2     2
-     3     3     3     3
+     2
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 1.907573 秒。
+---------------------------------------
+
+j =
+
+     3
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 3.317540 秒。
+---------------------------------------
+
+j =
+
+     4
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 6.091912 秒。
+---------------------------------------
+
+j =
+
+     5
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 38.797590 秒。
+---------------------------------------
+
+j =
+
+     6
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 98.241223 秒。
+
+a =
+
+    20
+
+---------------------------------------
+
+j =
+
+     1
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 0.755220 秒。
+---------------------------------------
+
+j =
+
+     2
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 1.644083 秒。
+---------------------------------------
+
+j =
+
+     3
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 3.131152 秒。
+---------------------------------------
+
+j =
+
+     4
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 6.516764 秒。
+---------------------------------------
+
+j =
+
+     5
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 36.101096 秒。
+---------------------------------------
+
+j =
+
+     6
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 148.649050 秒。
+
+a =
+
+    15
+
+---------------------------------------
+
+j =
+
+     1
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 0.863494 秒。
+---------------------------------------
+
+j =
+
+     2
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 1.751115 秒。
+---------------------------------------
+
+j =
+
+     3
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 3.213903 秒。
+---------------------------------------
+
+j =
+
+     4
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 6.528490 秒。
+---------------------------------------
+
+j =
+
+     5
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 36.571930 秒。
+---------------------------------------
+
+j =
+
+     6
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 172.084611 秒。
+
+a =
+
+    15
+
+---------------------------------------
+
+j =
+
+     1
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 0.915695 秒。
+---------------------------------------
+
+j =
+
+     2
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+时间已过 2.023627 秒。
+---------------------------------------
+
+j =
+
+     3
+
+Result after 5 evaluations of limited-memory solvers on 2D rosenbrock:
+{操作在以下过程中被用户终止 <a href="matlab:helpUtils.errorDocCallback('LBFGS_k', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\LBFGS_k.m', 36)" style="font-weight:bold">LBFGS_k</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\LBFGS_k.m',36,0)">line 36</a>)
 
 
-l =
+位置 <a href="matlab:helpUtils.errorDocCallback('isopTV_2d', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_2d.m', 95)" style="font-weight:bold">isopTV_2d</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_2d.m',95,0)">line 95</a>)
+        [k,f_value]=LBFGS_k(k_old,f_fj,f_mj,rho,Dissimilarity,Spacing,delta,z-u
+        ,M_lbgfs);
 
-     0     1     2     3
-     0     1     2     3
-     0     1     2     3
-     0     1     2     3
-
+位置 <a href="matlab:helpUtils.errorDocCallback('isopTV_initial_2d', 'D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial_2d.m', 26)" style="font-weight:bold">isopTV_initial_2d</a> (<a href="matlab: opentoline('D:\GitHub\paper\lbfgs\lbfgs\minFunc_comprehension\isopTV_initial_2d.m',26,0)">line 26</a>)
+[k] = isopTV_2d(f_mw,f_fw,lamda, rho_0,
+alpha);
+} 
